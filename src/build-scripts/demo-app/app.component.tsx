@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import { AppStyled } from '@demo-app/app.styled';
+import { Global } from '@components/global/global.component';
 
 export const App: FC = () => (
-    <AppStyled>
+    <Global>
         App
-    </AppStyled>
+    </Global>
 );

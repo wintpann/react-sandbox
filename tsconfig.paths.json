@@ -2,7 +2,10 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@demo-app/*": ["src/build-scripts/demo-app/*"]
+      "@demo-app/*": ["src/build-scripts/demo-app/*"],
+      "@components/*": ["src/root/components/*"],
+      "@hooks/*": ["src/root/hooks/*"],
+      "@theme/*": ["src/root/theme/*"]
     }
   }
 }
