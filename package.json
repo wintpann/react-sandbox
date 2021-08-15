@@ -11,7 +11,11 @@
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint:tsx": "lint-staged",
+    "lint:styled": "stylelint './src/**/*.styled.ts'",
+    "lint:css": "",
+    "lint": "npm run lint:tsx && npm run lint:styled && npm run lint:css"
   },
   "lint-staged": {
     "src/**/*.{ts,tsx}": [
@@ -47,6 +51,10 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "react-scripts": "4.0.3",
+    "stylelint": "^13.13.1",
+    "stylelint-config-recommended": "^5.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.10.0",
     "typescript": "^4.1.2"
   }
 }

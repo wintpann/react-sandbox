@@ -1,10 +1,5 @@
 import React, { FC } from 'react';
-import styled from 'styled-components';
-
-const StyledApp = styled.div`
-  margin: 10px;
-  background: red;
-`;
+import { StyledApp } from './App.styled';
 
 const App: FC = () => <StyledApp>eslint</StyledApp>;
 
