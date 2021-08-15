@@ -8,13 +8,11 @@
     "styled-components": "^5.3.0"
   },
   "scripts": {
-    "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "BUILD_MODE=demo DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
+    "build": "BUILD_MODE=export react-app-rewired build",
     "lint:tsx": "lint-staged",
-    "lint:styled": "stylelint './src/**/*.styled.ts'",
-    "lint:css": "prettier --write './src/**/*{.styled.ts,.css}'",
+    "lint:styled": "stylelint './src/**/*.styled.ts' --allow-empty-input",
+    "lint:css": "prettier --write \"./src/**/*.{styled.ts,css}\" --no-error-on-unmatched-pattern",
     "lint": "npm run lint:tsx && npm run lint:styled && npm run lint:css"
   },
   "lint-staged": {
@@ -51,6 +49,7 @@
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
     "prettier": "2.3.2",
+    "react-app-rewired": "^2.1.8",
     "react-scripts": "4.0.3",
     "stylelint": "^13.13.1",
     "stylelint-config-recommended": "^5.0.0",
