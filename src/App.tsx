@@ -1,11 +1,5 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      app
-    </div>
-  );
-}
+const App: FC = () => <div>ESLINT</div>;
 
-export default App;
+export { App };
