@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { StyledApp } from './App.styled';
+import { AppStyled } from './App.styled';
 
-const App: FC = () => <StyledApp>eslint</StyledApp>;
+const App: FC = () => <AppStyled>eslint</AppStyled>;
 
 export { App };
