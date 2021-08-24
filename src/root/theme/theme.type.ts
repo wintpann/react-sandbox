@@ -10,5 +10,16 @@ export type Theme = {
       medium: string;
       big: string;
     }
+  },
+  border: {
+    radius: string;
+    color: string;
+  },
+  actions: {
+    hover: string;
+    focus: string;
+  },
+  shadow: {
+    color: string;
   }
 }

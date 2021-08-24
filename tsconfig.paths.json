@@ -4,9 +4,9 @@
     "paths": {
       "@demo-app/*": ["src/build-scripts/demo-app/*"],
       "@components/*": ["src/root/components/*"],
-      "@hooks/*": ["src/root/hooks/*"],
       "@theme/*": ["src/root/theme/*"],
-      "@utils/*": ["src/root/utils/*"]
+      "@utils/*": ["src/root/utils/*"],
+      "@constants/*": ["src/root/constants/*"]
     }
   }
 }
