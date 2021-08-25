@@ -1,9 +1,17 @@
 import styled from 'styled-components';
-import { ButtonProps } from '@components/button/button.type';
+import { ButtonProps, ButtonStyledProps } from '@components/button/button.type';
 import { PropCss } from '@utils/type';
-import { flexMixin, ifStyle, transitionMixin } from '@utils/styled';
+import {
+    flexMixin,
+    ifStyle,
+    transitionMixin,
+} from '@utils/styled';
 
-const getButtonTypeCss: PropCss<Required<ButtonProps>, ButtonProps, 'appearance'> = {
+const getButtonTypeCss: PropCss<
+    Required<ButtonProps>,
+    ButtonProps,
+    'appearance'
+> = {
     default: () => '',
     primary: () => `
         background-color: #45a8fa;
@@ -78,9 +86,12 @@ const getButtonSizeCss: PropCss<Required<ButtonProps>, ButtonProps, 'size'> = {
     `,
 };
 
-export const ButtonStyled = styled.button<ButtonProps>`
+export const ButtonStyled = styled.button<ButtonStyledProps>`
     ${flexMixin()}
-    ${transitionMixin({ props: ['background-color', 'box-shadow', 'color'], duration: 0.1 })}
+    ${transitionMixin({
+        props: ['background-color', 'box-shadow', 'color'],
+        duration: 0.1,
+    })}
     
     cursor: pointer;
     border: none;
@@ -92,18 +103,18 @@ export const ButtonStyled = styled.button<ButtonProps>`
         color: ${props.theme.color};
         border-radius: ${props.theme.border.radius};
         border: 1px solid ${props.theme.border.color};
-        
+
         &:hover {
             background-color: ${props.theme.actions.hover};
         }
-        
+
         &:active {
             box-shadow: 0 0 2px 1px ${props.theme.shadow.color};
             border-color: ${props.theme.border.color};
         }
-        
-        ${getButtonTypeCss[props.appearance || 'default'](props)}
-        ${getButtonSizeCss[props.size || 'medium'](props)}
+
+        ${getButtonTypeCss[props.appearance](props)}
+        ${getButtonSizeCss[props.size](props)}
         
         ${ifStyle(props.disabled)`
             user-select: none;

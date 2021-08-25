@@ -1,7 +1,7 @@
 import { css } from 'styled-components';
 import { CssMixin, CssReturn } from '@utils/type';
 
-const getProp = <T>(defaultProp: T, prop?: T): T => prop || defaultProp;
+export const getProp = <T>(defaultProp: T, prop?: T): T => prop || defaultProp;
 
 const emptyCss = css``;
 
