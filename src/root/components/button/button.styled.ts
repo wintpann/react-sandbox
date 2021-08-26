@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import { ButtonProps, ButtonStyledProps } from '@components/button/button.type';
 import { PropCss } from '@utils/type';
-import {
-    flexMixin,
-    ifStyle,
-    transitionMixin,
-} from '@utils/styled';
+import { flexMixin, ifStyle, transitionMixin } from '@utils/styled';
 
 const getButtonTypeCss: PropCss<
     Required<ButtonProps>,

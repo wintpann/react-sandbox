@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 export type LoaderProps = {
     children?: ReactNode;
     isLoading: boolean;
-    type?: 'default' | 'clock' | 'neon' | 'bubbling-dots' | 'atom' | 'wifi' | 'wave';
+    type?: 'default' | 'clock' | 'neon' | 'atom' | 'wifi';
     size?: number;
 }
 

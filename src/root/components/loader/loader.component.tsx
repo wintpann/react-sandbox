@@ -2,16 +2,16 @@ import React, { FC, memo, useMemo } from 'react';
 import { LoaderProps, SpinnerProps } from '@components/loader/loader.type';
 import { LoaderStyled } from '@components/loader/loader.styled';
 import { DefaultSpinner } from '@components/loader/spinners/default-spinner';
+import { ClockSpinner } from '@components/loader/spinners/clock-spinner';
+import { NeonSpinner } from '@components/loader/spinners/neon-spinner';
 import { getProp } from '@utils/styled';
 
 const spinnerMap: {[T in Required<LoaderProps>['type']]: FC<SpinnerProps>} = {
     default: DefaultSpinner,
-    clock: DefaultSpinner,
-    neon: DefaultSpinner,
-    'bubbling-dots': DefaultSpinner,
+    clock: ClockSpinner,
+    neon: NeonSpinner,
     atom: DefaultSpinner,
     wifi: DefaultSpinner,
-    wave: DefaultSpinner,
 };
 
 const Loader: FC<LoaderProps> = ({ children, ...rest }) => {

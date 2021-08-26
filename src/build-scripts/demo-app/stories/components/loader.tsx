@@ -11,6 +11,8 @@ const DemoStyled = styled.div`
 
 export const LoaderStories: FC = () => (
     <DemoStyled>
-        <Loader isLoading={false} />
+        <Loader isLoading={false} type="default" />
+        <Loader isLoading={false} type="clock" />
+        <Loader isLoading={false} type="neon" />
     </DemoStyled>
 );
