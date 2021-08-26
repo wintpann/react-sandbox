@@ -3,6 +3,7 @@ import { LoaderProps, SpinnerProps } from '@components/loader/loader.type';
 import { LoaderStyled } from '@components/loader/loader.styled';
 import { DefaultSpinner } from '@components/loader/spinners/default-spinner';
 import { ClockSpinner } from '@components/loader/spinners/clock-spinner';
+import { AtomSpinner } from '@components/loader/spinners/atom-spinner';
 import { NeonSpinner } from '@components/loader/spinners/neon-spinner';
 import { getProp } from '@utils/styled';
 
@@ -10,7 +11,7 @@ const spinnerMap: {[T in Required<LoaderProps>['type']]: FC<SpinnerProps>} = {
     default: DefaultSpinner,
     clock: ClockSpinner,
     neon: NeonSpinner,
-    atom: DefaultSpinner,
+    atom: AtomSpinner,
     wifi: DefaultSpinner,
 };
 
