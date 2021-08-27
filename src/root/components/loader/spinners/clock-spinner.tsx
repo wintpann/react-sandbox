@@ -5,12 +5,13 @@ import { SpinnerProps } from '@components/loader/loader.type';
 export const ClockSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
     ${(props) => {
         const clockSize = props.size;
-        const clockRadius = Math.floor(clockSize / 2);
-        const clockMinuteLength = Math.floor(clockSize * 0.4);
-        const clockHourLength = Math.floor(clockSize * 0.2);
-        const clockThickness = Math.floor(clockSize * 0.05);
-        const clockMinuteTop = Math.floor(clockRadius * 0.12);
-        const clockHourTop = Math.floor(clockMinuteTop + clockHourLength);
+        const clockRadius = clockSize / 2;
+        const clockMinuteLength = clockSize * 0.4;
+        const clockHourLength = clockSize * 0.2;
+        const clockThickness = clockSize * 0.05;
+        const clockMinuteTop = clockRadius * 0.12;
+        const clockHourTop = clockMinuteTop + clockHourLength;
+        const duration = props.duration * 0.05;
         const clockColor = '#fff';
 
         return `
@@ -31,18 +32,18 @@ export const ClockSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
                 background: ${clockColor};
                 border-radius: 10px;
                 transform-origin: center calc(100% - ${clockThickness / 2}px);
-                animation: spin infinite linear;
+                animation: spin infinite ${props.animation};
             }
             
             &:before {
                 height: ${clockMinuteLength}px;
-                animation-duration: 2s;
+                animation-duration: ${duration}s;
             }
             
             &:after {
                 top: ${clockHourTop}px;
                 height: ${clockHourLength}px;
-                animation-duration: 15s;
+                animation-duration: ${duration * 7.5}s;
             }
             
             @keyframes spin {

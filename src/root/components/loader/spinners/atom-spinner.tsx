@@ -7,8 +7,9 @@ const AtomInnerStyled = styled.div``;
 export const AtomWrapperStyled: FC<SpinnerProps> = styled.div<SpinnerProps>`
     ${(props) => {
         const atomSize = props.size;
-        const atomColor = '#64bfe8';
         const atomThick = atomSize * 0.05;
+        const duration = props.duration * 0.02;
+        const atomColor = '#64bfe8';
 
         return `
             position: relative;
@@ -27,17 +28,17 @@ export const AtomWrapperStyled: FC<SpinnerProps> = styled.div<SpinnerProps>`
                 border-bottom: ${atomThick}px solid ${atomColor};
                 
                 &:nth-child(1) {
-                    animation: rotate1 1.15s linear infinite;
-                    animation-delay: -0.8s;
+                    animation: rotate1 ${duration}s ${props.animation} infinite;
+                    animation-delay: -${duration * 0.6}s;
                 }
                 
                 &:nth-child(2) {
-                    animation: rotate2 1.15s linear infinite;
-                    animation-delay: -0.4s;
+                    animation: rotate2 ${duration}s ${props.animation} infinite;
+                    animation-delay: -${duration * 0.3}s;
                 }
                 
                 &:nth-child(3) {
-                    animation: rotate3 1.15s linear infinite;
+                    animation: rotate3 ${duration}s ${props.animation} infinite;
                     animation-delay: 0s;
                 }
             }

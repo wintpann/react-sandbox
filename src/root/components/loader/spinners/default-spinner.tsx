@@ -10,6 +10,7 @@ export const DefaultSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
         const firstLineDistance = `-${wrapperSize * 0.2}px`;
         const secondLineDistance = `${wrapperSize * 0.1}px`;
         const lineWidth = `${wrapperSize * 0.05}`;
+        const duration = props.duration * 0.02;
 
         return `
             @keyframes spin{
@@ -25,7 +26,7 @@ export const DefaultSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
             border: ${lineWidth}px solid transparent;
             border-top-color: #A04668;
             border-radius: 50%;
-            animation: spin 2s linear infinite;
+            animation: spin ${duration}s ${props.animation} infinite;
             
             &:before, &:after{
                 content:'';
@@ -40,7 +41,7 @@ export const DefaultSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
                 left: ${firstLineDistance};
                 right: ${firstLineDistance};
                 bottom: ${firstLineDistance};
-                animation: spin 3s linear infinite;
+                animation: spin ${duration + 1}s ${props.animation} infinite;
             }
             
             &:after{
@@ -49,7 +50,7 @@ export const DefaultSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
                 left: ${secondLineDistance};
                 right: ${secondLineDistance};
                 bottom: ${secondLineDistance};
-                animation: spin 4s linear infinite;
+                animation: spin ${duration + 2}s ${props.animation} infinite;
             }
         `;
     }}

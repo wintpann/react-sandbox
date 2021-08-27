@@ -13,12 +13,13 @@ const NeonInnerStyled = styled.div`
 const NeonWrapperStyled = styled.div<SpinnerProps>`
     ${(props) => {
         const atomSize = props.size;
-        const offset = Math.floor(atomSize * 0.1);
+        const offset = atomSize * 0.1;
+        const duration = props.duration * 0.01;
         const blurs = [
-            Math.floor(atomSize * 0.025),
-            Math.floor(atomSize * 0.05),
-            Math.floor(atomSize * 0.1),
-            Math.floor(atomSize * 0.2),
+            atomSize * 0.025,
+            atomSize * 0.05,
+            atomSize * 0.1,
+            atomSize * 0.2,
         ];
 
         return `
@@ -27,7 +28,7 @@ const NeonWrapperStyled = styled.div<SpinnerProps>`
             height: ${atomSize}px;
             border-radius: 50%;
             background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
-            animation: animate 1.2s linear infinite;
+            animation: animate ${duration}s ${props.animation} infinite;
             
             @keyframes animate {
                 0% {
