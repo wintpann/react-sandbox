@@ -34,9 +34,17 @@ export const transitionMixin: CssMixin<{
     `;
 };
 
+const getTemplateResult = (
+    strings: TemplateStringsArray,
+    ...values: unknown[]
+): string => strings.map((str, i) => str + (values[i] ?? '')).join('');
+
 export const ifStyle = (
     condition: boolean | undefined,
-) => (style: string | TemplateStringsArray): string => <string>(condition ? style : '');
+) => (
+    style: TemplateStringsArray,
+    ...args: unknown[]
+): string => (condition ? getTemplateResult(style, ...args) : '');
 
 export const classify = <
     U extends HTMLAttributes<unknown>,
