@@ -1,11 +1,9 @@
 import styled from 'styled-components';
 
 export const GlobalStyled = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 
     ${({ theme }) => `
         background: ${theme.background};

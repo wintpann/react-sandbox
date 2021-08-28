@@ -1,5 +1,5 @@
 /* eslint-disable */
-const { exec } = require('child_process');
+const { exec } = require('shelljs');
 const { config } = require('dotenv');
 
 config();
