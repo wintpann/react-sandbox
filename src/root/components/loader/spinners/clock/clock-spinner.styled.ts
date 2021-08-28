@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
-export const ClockSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
+export const ClockSpinnerStyled = styled.div<SpinnerProps>`
     ${(props) => {
         const clockSize = props.size;
         const clockRadius = clockSize / 2;

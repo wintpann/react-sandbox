@@ -4,5 +4,4 @@ import { ReactNode } from 'react';
 export type GlobalProps = {
   theme?: Theme;
   children?: ReactNode;
-  className?: string;
 }

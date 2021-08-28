@@ -1,8 +1,7 @@
-import React, { FC } from 'react';
 import styled from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
-const NeonInnerStyled = styled.div`
+export const NeonInnerStyled = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
@@ -10,7 +9,7 @@ const NeonInnerStyled = styled.div`
     background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
 `;
 
-const NeonWrapperStyled = styled.div<SpinnerProps>`
+export const NeonWrapperStyled = styled.div<SpinnerProps>`
     ${(props) => {
         const atomSize = props.size;
         const offset = atomSize * 0.1;
@@ -66,12 +65,3 @@ const NeonWrapperStyled = styled.div<SpinnerProps>`
         `;
     }}
 `;
-
-export const NeonSpinner: FC<SpinnerProps> = (props) => (
-    <NeonWrapperStyled {...props}>
-        <NeonInnerStyled />
-        <NeonInnerStyled />
-        <NeonInnerStyled />
-        <NeonInnerStyled />
-    </NeonWrapperStyled>
-);

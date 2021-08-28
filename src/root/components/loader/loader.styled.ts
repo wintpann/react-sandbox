@@ -3,7 +3,11 @@ import { LoaderStyledProps } from '@components/loader/loader.type';
 import { PropCss } from '@utils/type';
 import { ifStyle, transitionMixin } from '@utils/styled';
 
-const getEntryCss: PropCss<Required<LoaderStyledProps>, LoaderStyledProps, 'entry'> = {
+const getEntryCss: PropCss<
+    Required<LoaderStyledProps>,
+    LoaderStyledProps,
+    'entry'
+> = {
     rough: ({ isLoading }) => `
         & > * {
             display: none;

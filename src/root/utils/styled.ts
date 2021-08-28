@@ -1,4 +1,7 @@
+import { createElement, FC, HTMLAttributes } from 'react';
+import classNames from 'classnames';
 import { CssMixin } from '@utils/type';
+import { CLASSNAME_PREFIX } from '@constants/css';
 
 export const getProp = <T>(defaultProp: T, prop?: T): T => prop || defaultProp;
 
@@ -34,3 +37,20 @@ export const transitionMixin: CssMixin<{
 export const ifStyle = (
     condition: boolean | undefined,
 ) => (style: string | TemplateStringsArray): string => <string>(condition ? style : '');
+
+export const classify = <
+    U extends HTMLAttributes<unknown>,
+    T extends Record<string, FC<U>>
+>(importObject: T): T => {
+    const classified = Object.keys(importObject).reduce((acc, key) => {
+        const component = importObject[key];
+        const componentName = key.replace(/Styled$/i, '');
+        const componentClassName = `${CLASSNAME_PREFIX}${componentName}`;
+        const wrapped: FC<U> = (props: U) => createElement(component, {
+            ...props,
+            className: classNames(componentClassName, props.className),
+        });
+        return { ...acc, [key]: wrapped };
+    }, {});
+    return classified as T;
+};

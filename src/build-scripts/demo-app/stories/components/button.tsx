@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { Button } from '@components/button/button.component';
 import styled from 'styled-components';
-import { ButtonStyled } from '@components/button/button.styled';
+import * as Styled from '@components/button/button.styled';
 
 const DemoStyled = styled.div`
-    ${ButtonStyled} {
+    ${Styled.ButtonStyled} {
         margin: 10px;
     }
 `;

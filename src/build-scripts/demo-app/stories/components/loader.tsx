@@ -1,10 +1,10 @@
 import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import { Loader } from '@components/loader/loader.component';
-import { LoaderStyled } from '@components/loader/loader.styled';
+import * as Styled from '@components/loader/loader.styled';
 
 const DemoStyled = styled.div`
-    ${LoaderStyled} {
+    ${Styled.LoaderStyled} {
         margin: 10px;
     }
 `;

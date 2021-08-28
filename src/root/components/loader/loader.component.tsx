@@ -1,11 +1,13 @@
 import React, { FC, memo, useMemo } from 'react';
 import { LoaderProps, SpinnerProps } from '@components/loader/loader.type';
-import { LoaderStyled } from '@components/loader/loader.styled';
-import { DefaultSpinner } from '@components/loader/spinners/default-spinner';
-import { ClockSpinner } from '@components/loader/spinners/clock-spinner';
-import { AtomSpinner } from '@components/loader/spinners/atom-spinner';
-import { NeonSpinner } from '@components/loader/spinners/neon-spinner';
-import { getProp } from '@utils/styled';
+import * as Styled from '@components/loader/loader.styled';
+import { DefaultSpinner } from '@components/loader/spinners/default/default-spinner.component';
+import { ClockSpinner } from '@components/loader/spinners/clock/clock-spinner.component';
+import { AtomSpinner } from '@components/loader/spinners/atom/atom-spinner.component';
+import { NeonSpinner } from '@components/loader/spinners/neon/neon-spinner.component';
+import { classify, getProp } from '@utils/styled';
+
+const Classified = classify(Styled);
 
 const spinnerMap: {
     [T in Required<LoaderProps>['type']]: FC<SpinnerProps>
@@ -60,9 +62,9 @@ const Loader: FC<LoaderProps> = (props) => {
     }, [props.size, props.type, props.duration, props.entry, props.animation]);
 
     return (
-        <LoaderStyled {...props} {...defaultProps}>
+        <Classified.LoaderStyled {...props} {...defaultProps}>
             <Spinner {...defaultProps} />
-        </LoaderStyled>
+        </Classified.LoaderStyled>
     );
 };
 

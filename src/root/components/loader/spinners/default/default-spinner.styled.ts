@@ -1,8 +1,7 @@
-import { FC } from 'react';
 import styled from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
-export const DefaultSpinner: FC<SpinnerProps> = styled.div<SpinnerProps>`
+export const DefaultSpinnerStyled = styled.div<SpinnerProps>`
     ${(props) => {
         const wrapperSize = props.size;
         const spinnerSize = wrapperSize * 0.6;

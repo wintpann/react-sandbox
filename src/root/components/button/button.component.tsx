@@ -1,8 +1,9 @@
 import React, { FC, memo, useMemo } from 'react';
-import { ButtonStyled } from '@components/button/button.styled';
+import * as Styled from '@components/button/button.styled';
 import { ButtonProps } from '@components/button/button.type';
-import { getClassName } from '@utils/css';
-import { getProp } from '@utils/styled';
+import { classify, getProp } from '@utils/styled';
+
+const Classified = classify(Styled);
 
 const Button: FC<ButtonProps> = ({
     children,
@@ -14,13 +15,12 @@ const Button: FC<ButtonProps> = ({
     }), [rest.appearance, rest.size]);
 
     return (
-        <ButtonStyled
+        <Classified.ButtonStyled
             {...rest}
             {...defaultProps}
-            className={getClassName('button', rest.className)}
         >
             {children}
-        </ButtonStyled>
+        </Classified.ButtonStyled>
     );
 };
 

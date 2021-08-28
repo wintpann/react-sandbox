@@ -2,22 +2,23 @@ import React, { FC, memo } from 'react';
 import { ThemeProvider } from 'styled-components';
 
 import { DefaultTheme } from '@theme/themes/default.theme';
-import { GlobalStyled } from '@components/global/global.styled';
+import * as Styled from '@components/global/global.styled';
 import { GlobalProps } from '@components/global/global.type';
-import { getClassName } from '@utils/css';
 
 import '@components/global/normalize.css';
 import '@components/global/common.css';
+import { classify } from '@utils/styled';
+
+const Classified = classify(Styled);
 
 const Global: FC<GlobalProps> = ({
     children,
     theme = DefaultTheme,
-    className,
 }) => (
     <ThemeProvider theme={theme}>
-        <GlobalStyled className={getClassName('global', className)}>
+        <Classified.GlobalStyled>
             {children}
-        </GlobalStyled>
+        </Classified.GlobalStyled>
     </ThemeProvider>
 );
 

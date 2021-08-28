@@ -1,10 +1,9 @@
-import React, { FC } from 'react';
 import styled from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
-const AtomInnerStyled = styled.div``;
+export const AtomInnerStyled = styled.div``;
 
-export const AtomWrapperStyled: FC<SpinnerProps> = styled.div<SpinnerProps>`
+export const AtomWrapperStyled = styled.div<SpinnerProps>`
     ${(props) => {
         const atomSize = props.size;
         const atomThick = atomSize * 0.05;
@@ -72,11 +71,3 @@ export const AtomWrapperStyled: FC<SpinnerProps> = styled.div<SpinnerProps>`
     `;
     }}
 `;
-
-export const AtomSpinner: FC<SpinnerProps> = (props) => (
-    <AtomWrapperStyled {...props}>
-        <AtomInnerStyled />
-        <AtomInnerStyled />
-        <AtomInnerStyled />
-    </AtomWrapperStyled>
-);
