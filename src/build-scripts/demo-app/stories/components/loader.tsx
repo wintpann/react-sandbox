@@ -14,10 +14,10 @@ export const LoaderStories: FC = () => {
     return (
         <DemoStyled>
             <button type="button" onClick={() => setIsLoading((value) => !value)}>Click</button>
-            <Loader isLoading={isLoading} type="default" />
-            <Loader isLoading={isLoading} type="clock" />
-            <Loader isLoading={isLoading} type="neon" />
-            <Loader isLoading={isLoading} type="atom" />
+            <Loader isShown={isLoading} type="default" />
+            <Loader isShown={isLoading} type="clock" />
+            <Loader isShown={isLoading} type="neon" />
+            <Loader isShown={isLoading} type="atom" />
         </DemoStyled>
     );
 };

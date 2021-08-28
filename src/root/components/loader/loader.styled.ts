@@ -8,26 +8,26 @@ const getEntryCss: PropCss<
     LoaderStyledProps,
     'entry'
 > = {
-    rough: ({ isLoading }) => `
+    rough: ({ isShown }) => `
         & > * {
             display: none;
         }
-        ${ifStyle(isLoading)`
+        ${ifStyle(isShown)`
             & > * {
                 display: block;
             }
         `}
     `,
-    opacity: ({ isLoading }) => `
+    opacity: ({ isShown }) => `
         opacity: 0;
-        ${ifStyle(isLoading)`
+        ${ifStyle(isShown)`
             opacity: 1;
         `}
     `,
-    scale: ({ isLoading }) => `
+    scale: ({ isShown }) => `
         transform: scale(0.2);
         opacity: 0;
-        ${ifStyle(isLoading)`
+        ${ifStyle(isShown)`
             transform: scale(1);
             opacity: 1;
         `}

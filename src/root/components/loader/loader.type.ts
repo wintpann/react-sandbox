@@ -1,5 +1,5 @@
 export type LoaderProps = {
-    isLoading: boolean;
+    isShown: boolean;
     type?: 'default' | 'clock' | 'neon' | 'atom';
     size?: number;
     duration?: number;
@@ -15,7 +15,7 @@ export type LoaderProps = {
     entry?: 'scale' | 'opacity' | 'rough';
 }
 
-export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isLoading' | 'size' | 'entry'>
+export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isShown' | 'size' | 'entry'>
 
 export type SpinnerProps = Pick<Required<LoaderProps>, 'size' | 'duration'> & {
     animation: string;

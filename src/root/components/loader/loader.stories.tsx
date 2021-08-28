@@ -7,7 +7,7 @@ export default {
     component: Loader,
     title: 'components/Loader',
     argTypes: {
-        isLoading: {
+        isShown: {
             control: { type: 'boolean' },
         },
         type: {
@@ -49,7 +49,7 @@ const Template: StorybookTemplate<LoaderProps> = (args) => <Loader {...args} />;
 export const Default = Template.bind({});
 
 Default.args = {
-    isLoading: true,
+    isShown: true,
     size: 60,
     duration: 100,
     entry: 'scale',
