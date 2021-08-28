@@ -1,7 +1,7 @@
 import { Theme } from '@theme/theme.type';
+import { FC } from 'react';
 
-export type PropCss<
-    RequiredProps extends { [T in PropName]: string },
+export type PropCss<RequiredProps extends { [T in PropName]: string },
     Props,
     PropName extends keyof RequiredProps,
 > = {
@@ -9,3 +9,5 @@ export type PropCss<
 }
 
 export type CssMixin<Options> = (options?: Partial<Options>) => string;
+
+export type StorybookTemplate<Props> = FC<Props> & { args?: Props }

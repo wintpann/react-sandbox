@@ -2,7 +2,6 @@ import React, { FC, memo, useMemo } from 'react';
 import * as Styled from '@components/button/button.styled';
 import { ButtonProps } from '@components/button/button.type';
 import { classify, getProp } from '@utils/styled';
-import { DefaultTheme } from '@theme/themes/default.theme';
 
 const Classified = classify(Styled);
 
@@ -19,7 +18,6 @@ const Button: FC<ButtonProps> = ({
         <Classified.ButtonStyled
             {...rest}
             {...defaultProps}
-            theme={DefaultTheme}
         >
             {children}
         </Classified.ButtonStyled>
