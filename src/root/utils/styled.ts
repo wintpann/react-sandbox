@@ -1,9 +1,6 @@
-import { css } from 'styled-components';
-import { CssMixin, CssReturn } from '@utils/type';
+import { CssMixin } from '@utils/type';
 
 export const getProp = <T>(defaultProp: T, prop?: T): T => prop || defaultProp;
-
-const emptyCss = css``;
 
 export const flexMixin: CssMixin<{
     justify: 'center' | 'flex-start' | 'flex-end',
@@ -12,7 +9,7 @@ export const flexMixin: CssMixin<{
     const justify = getProp('center', options?.justify);
     const align = getProp('center', options?.align);
 
-    return css`
+    return `
         display: flex;
         justify-content: ${justify};
         align-items: ${align};
@@ -21,20 +18,19 @@ export const flexMixin: CssMixin<{
 
 export const transitionMixin: CssMixin<{
     props: string[],
-    duration: number
+    duration: number,
+    animation: string,
 }> = (options) => {
     const properties = getProp([], options?.props).join(', ');
     const duration = getProp(0.3, options?.duration);
+    const animation = getProp('ease', options?.animation);
 
-    return css`
-        transition: all ${duration}s ease;
+    return `
+        transition: all ${duration}s ${animation};
         transition-property: ${properties};
     `;
 };
 
 export const ifStyle = (
     condition: boolean | undefined,
-) => (style: TemplateStringsArray): CssReturn => {
-    const styles = condition ? css`${style}` : emptyCss;
-    return styles;
-};
+) => (style: string | TemplateStringsArray): string => <string>(condition ? style : '');

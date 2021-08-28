@@ -1,5 +1,4 @@
 import { Theme } from '@theme/theme.type';
-import { css } from 'styled-components';
 
 export type PropCss<
     RequiredProps extends { [T in PropName]: string },
@@ -9,6 +8,4 @@ export type PropCss<
     [T in RequiredProps[PropName]]: (props: Props & { theme: Theme }) => string
 }
 
-export type CssReturn = ReturnType<typeof css>;
-
-export type CssMixin<Options> = (options?: Partial<Options>) => CssReturn;
+export type CssMixin<Options> = (options?: Partial<Options>) => string;

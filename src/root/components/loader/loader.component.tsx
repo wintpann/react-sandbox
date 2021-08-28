@@ -38,29 +38,30 @@ const spinnerAnimationMap: {
     atom: 'linear',
 };
 
-const Loader: FC<LoaderProps> = ({ children, ...rest }) => {
-    const Spinner = useMemo(() => spinnerMap[getProp('default', rest.type)], [rest.type]);
+const Loader: FC<LoaderProps> = (props) => {
+    const Spinner = useMemo(() => spinnerMap[getProp('default', props.type)], [props.type]);
 
     const defaultProps = useMemo(() => {
-        const size = getProp(60, rest.size);
-        const type = getProp('default', rest.type);
-        const duration = getProp(100, rest.duration);
+        const size = getProp(60, props.size);
+        const type = getProp('default', props.type);
+        const duration = getProp(100, props.duration);
+        const entry = getProp('scale', props.entry);
 
         const defaultSpinnerAnimation = spinnerAnimationMap[type];
-        const animation = animationMap[getProp(defaultSpinnerAnimation, rest.animation)];
+        const animation = animationMap[getProp(defaultSpinnerAnimation, props.animation)];
 
         return {
             size,
             type,
             duration,
             animation,
+            entry,
         };
-    }, [rest.animation, rest.size, rest.duration, rest.type]);
+    }, [props.size, props.type, props.duration, props.entry, props.animation]);
 
     return (
-        <LoaderStyled {...rest} {...defaultProps}>
+        <LoaderStyled {...props} {...defaultProps}>
             <Spinner {...defaultProps} />
-            {children}
         </LoaderStyled>
     );
 };

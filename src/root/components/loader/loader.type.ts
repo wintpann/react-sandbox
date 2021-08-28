@@ -1,7 +1,4 @@
-import { ReactNode } from 'react';
-
 export type LoaderProps = {
-    children?: ReactNode;
     isLoading: boolean;
     type?: 'default' | 'clock' | 'neon' | 'atom';
     size?: number;
@@ -15,9 +12,10 @@ export type LoaderProps = {
         | 'ease-in-out-slow-fast'
         | 'ease-in-out-fast'
         | 'ease-out-fast';
+    entry?: 'scale' | 'opacity' | 'rough';
 }
 
-export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isLoading' | 'size'>
+export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isLoading' | 'size' | 'entry'>
 
 export type SpinnerProps = Pick<Required<LoaderProps>, 'size' | 'duration'> & {
     animation: string;
