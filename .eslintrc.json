@@ -54,6 +54,14 @@
         "@typescript-eslint/explicit-module-boundary-types": "error",
         "react/destructuring-assignment": "off"
     },
+    "overrides": [
+        {
+            "files": "src/**/*.stories.+(ts|tsx)",
+            "rules": {
+                "import/no-default-export": "off"
+            }
+        }
+    ],
     "settings": {
         "import/resolver": {
             "typescript": {}
