@@ -7,14 +7,18 @@ import { AtomSpinner } from '@components/loader/spinners/atom-spinner';
 import { NeonSpinner } from '@components/loader/spinners/neon-spinner';
 import { getProp } from '@utils/styled';
 
-const spinnerMap: {[T in Required<LoaderProps>['type']]: FC<SpinnerProps>} = {
+const spinnerMap: {
+    [T in Required<LoaderProps>['type']]: FC<SpinnerProps>
+} = {
     default: DefaultSpinner,
     clock: ClockSpinner,
     neon: NeonSpinner,
     atom: AtomSpinner,
 };
 
-const animationMap: {[T in Required<LoaderProps>['animation']]: string} = {
+const animationMap: {
+    [T in Required<LoaderProps>['animation']]: string
+} = {
     linear: 'linear',
     ease: 'ease',
     'ease-in-out': 'ease-in-out',
@@ -25,14 +29,33 @@ const animationMap: {[T in Required<LoaderProps>['animation']]: string} = {
     'ease-out-fast': 'cubic-bezier(0.18, 0.89, 0.32, 1.28)',
 };
 
+const spinnerAnimationMap: {
+    [T in Required<LoaderProps>['type']]: Required<LoaderProps>['animation']
+} = {
+    default: 'ease',
+    clock: 'linear',
+    neon: 'ease',
+    atom: 'linear',
+};
+
 const Loader: FC<LoaderProps> = ({ children, ...rest }) => {
     const Spinner = useMemo(() => spinnerMap[getProp('default', rest.type)], [rest.type]);
-    const defaultProps = useMemo(() => ({
-        size: getProp(60, rest.size),
-        type: getProp('default', rest.type),
-        duration: getProp(100, rest.duration),
-        animation: animationMap[getProp('ease', rest.animation)],
-    }), [rest.animation, rest.size, rest.duration, rest.type]);
+
+    const defaultProps = useMemo(() => {
+        const size = getProp(60, rest.size);
+        const type = getProp('default', rest.type);
+        const duration = getProp(100, rest.duration);
+
+        const defaultSpinnerAnimation = spinnerAnimationMap[type];
+        const animation = animationMap[getProp(defaultSpinnerAnimation, rest.animation)];
+
+        return {
+            size,
+            type,
+            duration,
+            animation,
+        };
+    }, [rest.animation, rest.size, rest.duration, rest.type]);
 
     return (
         <LoaderStyled {...rest} {...defaultProps}>
