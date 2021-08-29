@@ -1,6 +1,14 @@
 import React from 'react';
-import {AppStyled} from '../src/build-scripts/demo-app/app.styled';
+import { AppStyled } from '../src/build-scripts/demo-app/app.styled';
 import { Global } from '../src/root/components/global/global.component';
+import styled from 'styled-components';
+import { GlobalStyled } from '../src/root/components/global/global.styled';
+
+const StoryStyled = styled.div`
+    ${GlobalStyled} {
+        overflow: hidden;
+    }
+`;
 
 export const parameters = {
     actions: { argTypesRegex: '^on[A-Z].*' },
@@ -14,10 +22,12 @@ export const parameters = {
 
 export const decorators = [
     (Story) => (
-        <Global>
-            <AppStyled>
-                <Story/>
-            </AppStyled>
-        </Global>
+        <StoryStyled>
+            <Global>
+                <AppStyled>
+                    <Story/>
+                </AppStyled>
+            </Global>
+        </StoryStyled>
     ),
 ];
