@@ -1,4 +1,9 @@
-import { createElement, FC, HTMLAttributes } from 'react';
+import {
+    createElement,
+    FC,
+    forwardRef,
+    HTMLAttributes,
+} from 'react';
 import classNames from 'classnames';
 import { CssMixin } from '@utils/type';
 import { CLASSNAME_PREFIX } from '@constants/css';
@@ -48,17 +53,28 @@ export const ifStyle = (
 
 export const classify = <
     U extends HTMLAttributes<unknown>,
-    T extends Record<string, FC<U>>
->(importObject: T): T => {
+    T extends Record<string, FC<U>>,
+    K extends keyof T
+>(importObject: T, forwardRefsTo?: K[]): T => {
     const classified = Object.keys(importObject).reduce((acc, key) => {
         const component = importObject[key];
         const componentName = key.replace(/Styled$/i, '');
         const componentClassName = `${CLASSNAME_PREFIX}${componentName}`;
+
+        const shouldForwardRef = forwardRefsTo?.includes(key as K);
+
+        const wrappedWithRef = forwardRef((props: U, ref) => createElement(component, {
+            ...props,
+            ref,
+            className: classNames(componentClassName, props.className),
+        }));
+
         const wrapped: FC<U> = (props: U) => createElement(component, {
             ...props,
             className: classNames(componentClassName, props.className),
         });
-        return { ...acc, [key]: wrapped };
+
+        return { ...acc, [key]: shouldForwardRef ? wrappedWithRef : wrapped };
     }, {});
     return classified as T;
 };

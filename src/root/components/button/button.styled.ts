@@ -1,13 +1,9 @@
 import styled from 'styled-components';
-import { ButtonProps, ButtonStyledProps } from '@components/button/button.type';
+import { ButtonStyledProps } from '@components/button/button.type';
 import { PropCss } from '@utils/type';
 import { flexMixin, ifStyle, transitionMixin } from '@utils/styled';
 
-const getButtonTypeCss: PropCss<
-    Required<ButtonProps>,
-    ButtonProps,
-    'appearance'
-> = {
+const getButtonTypeCss: PropCss<ButtonStyledProps, 'appearance'> = {
     default: () => '',
     primary: () => `
         background-color: #45a8fa;
@@ -69,7 +65,7 @@ const getButtonTypeCss: PropCss<
     `,
 };
 
-const getButtonSizeCss: PropCss<Required<ButtonProps>, ButtonProps, 'size'> = {
+const getButtonSizeCss: PropCss<ButtonStyledProps, 'size'> = {
     large: () => `
         min-width: 170px;
     `,

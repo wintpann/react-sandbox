@@ -1,11 +1,10 @@
 import { Theme } from '@theme/theme.type';
 import { FC } from 'react';
 
-export type PropCss<RequiredProps extends { [T in PropName]: string },
-    Props,
-    PropName extends keyof RequiredProps,
+export type PropCss<Props extends { [T in PropName]: string },
+    PropName extends keyof Props,
 > = {
-    [T in RequiredProps[PropName]]: (props: Props & { theme: Theme }) => string
+    [T in Props[PropName]]: (props: Props & { theme: Theme }) => string
 }
 
 export type CssMixin<Options> = (options?: Partial<Options>) => string;
