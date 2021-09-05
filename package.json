@@ -8,8 +8,10 @@
     "react-dom": "^17.0.2",
     "styled-components": "^5.3.0"
   },
+  "homepage": ".",
   "scripts": {
     "dev": "BUILD_MODE=demo DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
+    "demo-build": "BUILD_MODE=demo DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
     "build": "BUILD_MODE=export react-app-rewired build",
     "lint:tsx": "lint-staged",
     "lint:styled": "stylelint './src/**/*.styled.ts' --allow-empty-input",

@@ -6,7 +6,8 @@
       "@components/*": ["src/root/components/*"],
       "@theme/*": ["src/root/theme/*"],
       "@utils/*": ["src/root/utils/*"],
-      "@constants/*": ["src/root/constants/*"]
+      "@constants/*": ["src/root/constants/*"],
+      "@hooks/*": ["src/root/hooks/*"]
     }
   }
 }

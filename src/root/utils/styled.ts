@@ -7,8 +7,9 @@ import {
 import classNames from 'classnames';
 import { CssMixin } from '@utils/type';
 import { CLASSNAME_PREFIX } from '@constants/css';
+import { isNullable } from '@utils/common';
 
-export const getProp = <T>(defaultProp: T, prop?: T): T => prop || defaultProp;
+export const getProp = <T>(defaultProp: T, prop?: T): T => (isNullable(prop) ? defaultProp : prop);
 
 export const flexMixin: CssMixin<{
     justify: 'center' | 'flex-start' | 'flex-end',
