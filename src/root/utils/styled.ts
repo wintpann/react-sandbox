@@ -8,6 +8,8 @@ import classNames from 'classnames';
 import { CssMixin } from '@utils/type';
 import { CLASSNAME_PREFIX } from '@constants/css';
 import { isNullable } from '@utils/common';
+import { css, DefaultTheme, ThemedCssFunction } from 'styled-components';
+import { constant } from 'fp-ts/function';
 
 export const getProp = <T>(defaultProp: T, prop?: T): T => (isNullable(prop) ? defaultProp : prop);
 
@@ -40,17 +42,11 @@ export const transitionMixin: CssMixin<{
     `;
 };
 
-const getTemplateResult = (
-    strings: TemplateStringsArray,
-    ...values: unknown[]
-): string => strings.map((str, i) => str + (values[i] ?? '')).join('');
+type StyleFunction = ThemedCssFunction<DefaultTheme>;
 
 export const ifStyle = (
     condition: boolean | undefined,
-) => (
-    style: TemplateStringsArray,
-    ...args: unknown[]
-): string => (condition ? getTemplateResult(style, ...args) : '');
+): StyleFunction => (condition ? css : constant('') as unknown as StyleFunction);
 
 export const classify = <
     U extends HTMLAttributes<unknown>,

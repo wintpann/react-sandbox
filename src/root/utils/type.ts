@@ -10,3 +10,7 @@ export type PropCss<Props extends { [T in PropName]: string },
 export type CssMixin<Options> = (options?: Partial<Options>) => string;
 
 export type StorybookTemplate<Props> = FC<Props> & { args?: Props }
+
+export type Writable<T> = {
+    -readonly [P in keyof T]: T[P];
+};
