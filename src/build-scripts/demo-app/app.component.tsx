@@ -1,14 +1,39 @@
 import React, { FC } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    NavLink,
+} from 'react-router-dom';
+import css from '@demo-app/stories/app.module.css';
 import * as Styled from '@demo-app/app.styled';
 import { Global } from '@components/global/global.component';
-import { ButtonStories } from '@demo-app/stories/components/button';
-import { LoaderStories } from '@demo-app/stories/components/loader';
+import { AllStories } from '@demo-app/index';
 
 export const App: FC = () => (
     <Global>
-        <Styled.AppStyled>
-            <ButtonStories />
-            <LoaderStories />
-        </Styled.AppStyled>
+        <Router>
+            <Styled.LinksStyled>
+                {AllStories.map(({ name }) => (
+                    <Styled.LinkStyled>
+                        <NavLink
+                            to={`/${name}`}
+                            activeClassName={css.activeLink}
+                        >
+                            {name}
+                        </NavLink>
+                    </Styled.LinkStyled>
+                ))}
+            </Styled.LinksStyled>
+            <Styled.AppStyled>
+                <Switch>
+                    {AllStories.map(({ name, Story }) => (
+                        <Route exact path={`/${name}`}>
+                            <Story />
+                        </Route>
+                    ))}
+                </Switch>
+            </Styled.AppStyled>
+        </Router>
     </Global>
 );

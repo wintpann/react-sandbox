@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useRef } from 'react';
 import { noop } from '@utils/common';
-import { useNodeMutationObserver } from '@hooks/useMutationObserver';
+import { useNodeMutationObserver } from '@hooks/useMutationObservser';
 
 export type ModifyAction = 'remove' | 'append';
 export type ModifyStyleMode = 'replace' | 'append';

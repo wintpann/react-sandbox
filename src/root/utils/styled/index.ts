@@ -15,15 +15,18 @@ export const getProp = <T>(defaultProp: T, prop?: T): T => (isNullable(prop) ? d
 
 export const flexMixin: CssMixin<{
     justify: 'center' | 'flex-start' | 'flex-end',
-    align: 'center' | 'flex-start' | 'flex-end'
+    align: 'center' | 'flex-start' | 'flex-end',
+    wrap: 'nowrap' | 'wrap',
 }> = (options) => {
     const justify = getProp('center', options?.justify);
     const align = getProp('center', options?.align);
+    const wrap = getProp('nowrap', options?.wrap);
 
     return `
         display: flex;
         justify-content: ${justify};
         align-items: ${align};
+        flex-wrap: ${wrap};
     `;
 };
 

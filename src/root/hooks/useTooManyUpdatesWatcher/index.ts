@@ -43,7 +43,7 @@ export const useTooManyUpdatesWatcher = (
             clearInterval(updatesData.current.interval);
             updatesData.current = initialUpdatesData;
         };
-    }, [intervalMS, times]);
+    }, [intervalMS, times, trigger]);
 
     return updater;
 };
