@@ -69,7 +69,7 @@ export const useAutocomplete = <T>(options: AutocompleteOptions<T>): Autocomplet
                 );
                 const autocompletedItems = [
                     ...prev.autocompletedItems,
-                    ...matchedItems.slice(offsetStart, offsetEnd)
+                    ...matchedItems.slice(offsetStart, offsetEnd),
                 ];
                 const nextItems = matchedItems.slice(offsetEnd, nextOffsetEnd);
                 const hasNextPage = nextItems.length > 0;
