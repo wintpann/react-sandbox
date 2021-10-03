@@ -1,5 +1,6 @@
 import { Theme } from '@theme/theme.type';
 import { FC } from 'react';
+import { DefaultTheme, StyledComponent } from 'styled-components';
 
 export type PropCss<Props extends { [T in PropName]: string },
     PropName extends keyof Props,
@@ -14,3 +15,9 @@ export type StorybookTemplate<Props> = FC<Props> & { args?: Props }
 export type Writable<T> = {
     -readonly [P in keyof T]: T[P];
 };
+
+export type StyledFC <
+    Element extends keyof JSX.IntrinsicElements,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    Props extends {} = {},
+> = StyledComponent<Element, DefaultTheme, Props, never>;

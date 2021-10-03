@@ -15,7 +15,7 @@ export const App: FC = () => (
         <Router>
             <Styled.LinksStyled>
                 {AllStories.map(({ name }) => (
-                    <Styled.LinkStyled>
+                    <Styled.LinkStyled key={name}>
                         <NavLink
                             to={`/${name}`}
                             activeClassName={css.activeLink}
@@ -28,7 +28,7 @@ export const App: FC = () => (
             <Styled.AppStyled>
                 <Switch>
                     {AllStories.map(({ name, Story }) => (
-                        <Route exact path={`/${name}`}>
+                        <Route exact path={`/${name}`} key={name}>
                             <Story />
                         </Route>
                     ))}

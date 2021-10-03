@@ -1,4 +1,9 @@
-import { useCallback, useEffect, useRef } from 'react';
+import {
+    RefObject,
+    useCallback,
+    useEffect,
+    useRef,
+} from 'react';
 import { getProp } from '@utils/styled';
 import { noop } from '@utils/common';
 import { useTooManyUpdatesWatcher } from '@hooks/useTooManyUpdatesWatcher';
@@ -17,7 +22,7 @@ const notifyError = (): void => error([
 
 export const useMutationObserver = (
     callback: MutationCallback,
-    node: Node | null,
+    ref: RefObject<HTMLElement>,
     config?: Partial<MutationObserverConfig>,
 ): void => {
     const observerRef = useRef<MutationObserver>();
@@ -25,7 +30,7 @@ export const useMutationObserver = (
     const update = useTooManyUpdatesWatcher(notifyError);
 
     useEffect(() => {
-        if (!node) {
+        if (!ref.current) {
             return noop;
         }
 
@@ -38,7 +43,7 @@ export const useMutationObserver = (
         };
 
         const observer = new MutationObserver(callback);
-        observer.observe(node, observerConfig);
+        observer.observe(ref.current, observerConfig);
 
         observerRef.current = observer;
 
@@ -46,7 +51,7 @@ export const useMutationObserver = (
             observer.disconnect();
             observerRef.current = undefined;
         };
-    }, [callback, config, node, update]);
+    }, [callback, config, ref, update]);
 };
 
 export type NodeMutationCallback = (mutation: MutationRecord) => void;
@@ -59,11 +64,11 @@ const nodeMutationObserverConfig:MutationObserverConfig = {
 
 export const useNodeMutationObserver = (
     callback: NodeMutationCallback,
-    node: Node | null,
+    ref: RefObject<HTMLElement>,
 ): void => {
     const nodeMutationCallback = useCallback((mutations: MutationRecord[]) => {
         callback(mutations[0]);
     }, [callback]);
 
-    useMutationObserver(nodeMutationCallback, node, nodeMutationObserverConfig);
+    useMutationObserver(nodeMutationCallback, ref, nodeMutationObserverConfig);
 };

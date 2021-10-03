@@ -207,7 +207,7 @@ export const useModifyStyles = (
         }
     }, []);
 
-    useNodeMutationObserver(nodeMutationCallback, node);
+    useNodeMutationObserver(nodeMutationCallback, { current: node });
 
     return [appendStyles, removeStyles];
 };
