@@ -9,11 +9,11 @@ const getMessage = (msg: Message): string => (Array.isArray(msg) ? msg.join(' ')
 export const warn = devOnly<Log>((message) => {
     const msg = getMessage(message);
     // eslint-disable-next-line no-console
-    console.warn(`Darcula [Warning]: ${msg}. (This is a dev-only message)`);
+    console.warn(`Sandbox [Warning]: ${msg}. (This is a dev-only message)`);
 });
 
 export const error = devOnly<Log>((message) => {
     const msg = getMessage(message);
     // eslint-disable-next-line no-console
-    console.error(`Darcula [Error]: ${msg}. (This is a dev-only message)`);
+    console.error(`Sandbox [Error]: ${msg}. (This is a dev-only message)`);
 });

@@ -3,15 +3,7 @@ const path = require('path');
 const { alias, configPaths } = require('react-app-rewire-alias')
 
 const rewireEntries = (config) => {
-    const entryMap = {
-        demo: path.resolve(__dirname, 'src', 'build-scripts', 'demo.tsx'),
-        export: path.resolve(__dirname, 'src', 'build-scripts', 'export.ts'),
-    };
-    const buildMode = process.env.BUILD_MODE || 'export';
-
-    const currentEntry = entryMap[buildMode];
-    config.entry = currentEntry;
-
+    config.entry = path.resolve(__dirname, 'src', 'build-scripts', 'demo.tsx');
     return config;
 }
 

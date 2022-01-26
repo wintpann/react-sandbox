@@ -1,7 +1,7 @@
 {
-  "name": "darcula-react",
+  "name": "react-sandbox",
   "version": "0.0.0",
-  "private": false,
+  "private": true,
   "dependencies": {
     "@types/faker": "^5.5.8",
     "@types/uuid": "^8.3.1",
@@ -17,16 +17,11 @@
   },
   "homepage": ".",
   "scripts": {
-    "dev": "BUILD_MODE=demo DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
-    "demo-build": "BUILD_MODE=demo DISABLE_ESLINT_PLUGIN=true react-app-rewired build",
-    "build": "BUILD_MODE=export react-app-rewired build",
+    "dev": "DISABLE_ESLINT_PLUGIN=true react-app-rewired start",
     "lint:tsx": "lint-staged",
     "lint:styled": "stylelint './src/**/*.styled.ts' --allow-empty-input",
     "lint:css": "prettier --write \"./src/**/*.{styled.ts,css}\" --no-error-on-unmatched-pattern",
     "lint": "npm run lint:tsx && npm run lint:styled && npm run lint:css",
-    "storybook": "DISABLE_ESLINT_PLUGIN=true start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
-    "deploy-storybook": "node deploy-storybook",
     "postinstall": "husky install"
   },
   "lint-staged": {
@@ -48,12 +43,6 @@
     ]
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^6.3.7",
-    "@storybook/addon-essentials": "^6.1.21",
-    "@storybook/addon-links": "^6.3.7",
-    "@storybook/node-logger": "^6.3.7",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.3.7",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.3.0",
