@@ -19,6 +19,7 @@ const Stories = {
     UseTooManyUpdatesWatcherStories: MockStory,
     UseModifyStylesStories: MockStory,
     FindFirstParentWithPredicateStories: MockStory,
+    AnimateStories: MockStory,
 };
 
 type Story = { name: string; Story: FC };
