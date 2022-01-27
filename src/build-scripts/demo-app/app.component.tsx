@@ -5,6 +5,7 @@ import {
     Route,
     NavLink,
 } from 'react-router-dom';
+import { camelspace } from '@utils/string';
 import css from '@demo-app/stories/app.module.css';
 import * as Styled from '@demo-app/app.styled';
 import { Global } from '@components/global/global.component';
@@ -17,10 +18,10 @@ export const App: FC = () => (
                 {AllStories.map(({ name }) => (
                     <Styled.LinkStyled key={name}>
                         <NavLink
-                            to={`/${name}`}
+                            to={`/${name.toLowerCase()}`}
                             activeClassName={css.activeLink}
                         >
-                            {name}
+                            {camelspace(name)}
                         </NavLink>
                     </Styled.LinkStyled>
                 ))}

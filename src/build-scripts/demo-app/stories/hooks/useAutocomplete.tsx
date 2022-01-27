@@ -42,7 +42,7 @@ export const AutocompleteStories: FC = () => {
             search:
             <input type="text" onChange={(e) => setSearch(e.target.value)} />
             <UsersStyled>
-                {items.map((user) => <div>{`${user.name} ${user.index}`}</div>)}
+                {items.map((user) => <div key={user.id}>{`${user.name} ${user.index}`}</div>)}
             </UsersStyled>
         </DemoStyled>
     );
