@@ -13,10 +13,10 @@ export type LoaderProps = {
         | 'ease-in-out-fast'
         | 'ease-out-fast';
     entry?: 'scale' | 'opacity' | 'rough';
-}
+};
 
-export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isShown' | 'size' | 'entry'>
+export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isShown' | 'size' | 'entry'>;
 
 export type SpinnerProps = Pick<Required<LoaderProps>, 'size' | 'duration'> & {
     animation: string;
-}
+};

@@ -11,14 +11,9 @@ import { classify } from '@utils/styled';
 
 const Classified = classify(Styled);
 
-const Global: FC<GlobalProps> = ({
-    children,
-    theme = DefaultTheme,
-}) => (
+const Global: FC<GlobalProps> = ({ children, theme = DefaultTheme }) => (
     <ThemeProvider theme={theme}>
-        <Classified.GlobalStyled>
-            {children}
-        </Classified.GlobalStyled>
+        <Classified.GlobalStyled>{children}</Classified.GlobalStyled>
     </ThemeProvider>
 );
 

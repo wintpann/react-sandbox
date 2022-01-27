@@ -28,28 +28,32 @@ export const useAutocomplete = <T>(options: AutocompleteOptions<T>): Autocomplet
         setState((prev) => ({ ...prev, search }));
     }, []);
 
-    const getMatchedItems = useCallback((
-        search: string,
-        items: T[],
-        predicate: (item: T, searchString: string) => boolean,
-    ) => {
-        const noSearch = search.trim().length === 0;
-        return noSearch ? items : items.filter((item) => predicate(item, search));
-    }, []);
+    const getMatchedItems = useCallback(
+        (search: string, items: T[], predicate: (item: T, searchString: string) => boolean) => {
+            const noSearch = search.trim().length === 0;
+            return noSearch ? items : items.filter((item) => predicate(item, search));
+        },
+        [],
+    );
 
     useEffect(
-        () => setState((prev) => {
-            const matchedItems = getMatchedItems(state.search, options.items, options.predicate);
-            const autocompletedItems = matchedItems.slice(0, options.pageSize);
-            const nextItems = matchedItems.slice(options.pageSize, options.pageSize * 2);
-            const hasNextPage = nextItems.length > 0;
-            return {
-                ...prev,
-                pageIndex: 0,
-                hasNextPage,
-                autocompletedItems,
-            };
-        }),
+        () =>
+            setState((prev) => {
+                const matchedItems = getMatchedItems(
+                    state.search,
+                    options.items,
+                    options.predicate,
+                );
+                const autocompletedItems = matchedItems.slice(0, options.pageSize);
+                const nextItems = matchedItems.slice(options.pageSize, options.pageSize * 2);
+                const hasNextPage = nextItems.length > 0;
+                return {
+                    ...prev,
+                    pageIndex: 0,
+                    hasNextPage,
+                    autocompletedItems,
+                };
+            }),
         [getMatchedItems, options.items, options.pageSize, options.predicate, state.search],
     );
 
@@ -62,11 +66,7 @@ export const useAutocomplete = <T>(options: AutocompleteOptions<T>): Autocomplet
                     pageIndex * options.pageSize + options.pageSize,
                     pageIndex * options.pageSize + options.pageSize * 2,
                 ];
-                const matchedItems = getMatchedItems(
-                    prev.search,
-                    options.items,
-                    options.predicate,
-                );
+                const matchedItems = getMatchedItems(prev.search, options.items, options.predicate);
                 const autocompletedItems = [
                     ...prev.autocompletedItems,
                     ...matchedItems.slice(offsetStart, offsetEnd),
@@ -83,12 +83,7 @@ export const useAutocomplete = <T>(options: AutocompleteOptions<T>): Autocomplet
 
             return prev;
         });
-    }, [
-        getMatchedItems,
-        options.items,
-        options.pageSize,
-        options.predicate,
-    ]);
+    }, [getMatchedItems, options.items, options.pageSize, options.predicate]);
 
     return [state.autocompletedItems, setSearch, loadNext];
 };

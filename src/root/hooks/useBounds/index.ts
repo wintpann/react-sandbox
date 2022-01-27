@@ -1,9 +1,4 @@
-import {
-    RefObject,
-    useCallback,
-    useEffect,
-    useState,
-} from 'react';
+import { RefObject, useCallback, useEffect, useState } from 'react';
 import { ResizeCallback, useResizeObserver } from '@hooks/useResizeObserver';
 
 export type Bounds = Omit<DOMRectReadOnly, 'toJSON'>;

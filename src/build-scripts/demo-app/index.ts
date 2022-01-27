@@ -1,9 +1,13 @@
 import { ButtonStories } from '@demo-app/stories/components/button';
 import { LoaderStories } from '@demo-app/stories/components/loader';
 import { AutocompleteStories } from '@demo-app/stories/hooks/useAutocomplete';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import { warn } from '@utils/logger';
 
-const MockStory: FC = () => null;
+const MockStory: FC = () => {
+    useEffect(() => warn('Story is not ready'));
+    return null;
+};
 
 const Stories = {
     ButtonStories,
@@ -17,14 +21,15 @@ const Stories = {
     FindFirstParentWithPredicateStories: MockStory,
 };
 
-type Story = {name: string, Story: FC}
+type Story = { name: string; Story: FC };
 
-export const AllStories: Story[] = Object
-    .keys(Stories)
-    .reduce((acc: Story[], key: string) => [
+export const AllStories: Story[] = Object.keys(Stories).reduce(
+    (acc: Story[], key: string) => [
         ...acc,
         {
             name: key.replace(/Stories$/, ''),
             Story: Stories[key as keyof typeof Stories],
         },
-    ], []);
+    ],
+    [],
+);

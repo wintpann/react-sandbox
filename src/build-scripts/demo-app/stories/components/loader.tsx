@@ -13,7 +13,9 @@ export const LoaderStories: FC = () => {
     const [isLoading, setIsLoading] = useState(true);
     return (
         <DemoStyled>
-            <button type="button" onClick={() => setIsLoading((value) => !value)}>Click</button>
+            <button type="button" onClick={() => setIsLoading((value) => !value)}>
+                Click
+            </button>
             <Loader isShown={isLoading} type="default" />
             <Loader isShown={isLoading} type="clock" />
             <Loader isShown={isLoading} type="neon" />

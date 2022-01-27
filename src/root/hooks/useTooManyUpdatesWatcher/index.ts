@@ -2,12 +2,11 @@
 /* eslint react-hooks/exhaustive-deps: 0 */
 
 import { useCallback, useEffect, useRef } from 'react';
-import { isDev, noop } from '@utils/common';
 
 type UpdatesData = {
     timesUpdated: number;
     interval: number | undefined;
-}
+};
 
 type Updater = () => void;
 
@@ -21,10 +20,6 @@ export const useTooManyUpdatesWatcher = (
     intervalMS = 1000,
     times = 10,
 ): Updater => {
-    if (!isDev) {
-        return noop;
-    }
-
     const updatesData = useRef<UpdatesData>(initialUpdatesData);
 
     const updater = useCallback(() => {

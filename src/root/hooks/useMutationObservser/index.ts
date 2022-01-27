@@ -1,9 +1,4 @@
-import {
-    RefObject,
-    useCallback,
-    useEffect,
-    useRef,
-} from 'react';
+import { RefObject, useCallback, useEffect, useRef } from 'react';
 import { getProp } from '@utils/styled';
 import { noop } from '@utils/common';
 import { useTooManyUpdatesWatcher } from '@hooks/useTooManyUpdatesWatcher';
@@ -13,12 +8,13 @@ export type MutationObserverConfig = {
     attributes: boolean;
     childList: boolean;
     subtree: boolean;
-}
+};
 
-const notifyError = (): void => error([
-    'Too many updates detected in useMutationObserver.',
-    'Check passed callback and config options',
-]);
+const notifyError = (): void =>
+    error([
+        'Too many updates detected in useMutationObserver.',
+        'Check passed callback and config options',
+    ]);
 
 export const useMutationObserver = (
     callback: MutationCallback,
@@ -56,7 +52,7 @@ export const useMutationObserver = (
 
 export type NodeMutationCallback = (mutation: MutationRecord) => void;
 
-const nodeMutationObserverConfig:MutationObserverConfig = {
+const nodeMutationObserverConfig: MutationObserverConfig = {
     attributes: true,
     childList: false,
     subtree: false,
@@ -66,9 +62,12 @@ export const useNodeMutationObserver = (
     callback: NodeMutationCallback,
     ref: RefObject<HTMLElement>,
 ): void => {
-    const nodeMutationCallback = useCallback((mutations: MutationRecord[]) => {
-        callback(mutations[0]);
-    }, [callback]);
+    const nodeMutationCallback = useCallback(
+        (mutations: MutationRecord[]) => {
+            callback(mutations[0]);
+        },
+        [callback],
+    );
 
     useMutationObserver(nodeMutationCallback, ref, nodeMutationObserverConfig);
 };

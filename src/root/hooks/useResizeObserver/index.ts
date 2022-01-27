@@ -4,10 +4,7 @@ import { noop } from '@utils/common';
 
 export type ResizeCallback = (entry: ResizeObserverEntry) => void;
 
-export const useResizeObserver = (
-    callback: ResizeCallback,
-    ref: RefObject<HTMLElement>,
-): void => {
+export const useResizeObserver = (callback: ResizeCallback, ref: RefObject<HTMLElement>): void => {
     const observerRef = useRef<ResizeObserver | null>(null);
 
     useEffect(() => {

@@ -14,12 +14,7 @@ export const NeonWrapperStyled = styled.div<SpinnerProps>`
         const atomSize = props.size;
         const offset = atomSize * 0.1;
         const duration = props.duration * 0.01;
-        const blurs = [
-            atomSize * 0.025,
-            atomSize * 0.05,
-            atomSize * 0.1,
-            atomSize * 0.2,
-        ];
+        const blurs = [atomSize * 0.025, atomSize * 0.05, atomSize * 0.1, atomSize * 0.2];
 
         return `
             position: relative;

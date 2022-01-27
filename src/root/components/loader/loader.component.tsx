@@ -10,7 +10,7 @@ import { classify, getProp } from '@utils/styled';
 const Classified = classify(Styled);
 
 const spinnerMap: {
-    [T in Required<LoaderProps>['type']]: FC<SpinnerProps>
+    [T in Required<LoaderProps>['type']]: FC<SpinnerProps>;
 } = {
     default: DefaultSpinner,
     clock: ClockSpinner,
@@ -19,7 +19,7 @@ const spinnerMap: {
 };
 
 const animationMap: {
-    [T in Required<LoaderProps>['animation']]: string
+    [T in Required<LoaderProps>['animation']]: string;
 } = {
     linear: 'linear',
     ease: 'ease',
@@ -32,7 +32,7 @@ const animationMap: {
 };
 
 const spinnerAnimationMap: {
-    [T in Required<LoaderProps>['type']]: Required<LoaderProps>['animation']
+    [T in Required<LoaderProps>['type']]: Required<LoaderProps>['animation'];
 } = {
     default: 'ease',
     clock: 'linear',

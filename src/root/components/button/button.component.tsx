@@ -5,20 +5,17 @@ import { classify, getProp } from '@utils/styled';
 
 const Classified = classify(Styled);
 
-const Button: FC<ButtonProps> = ({
-    children,
-    ...rest
-}) => {
-    const defaultProps = useMemo(() => ({
-        appearance: getProp('default', rest.appearance),
-        size: getProp('medium', rest.size),
-    }), [rest.appearance, rest.size]);
+const Button: FC<ButtonProps> = ({ children, ...rest }) => {
+    const defaultProps = useMemo(
+        () => ({
+            appearance: getProp('default', rest.appearance),
+            size: getProp('medium', rest.size),
+        }),
+        [rest.appearance, rest.size],
+    );
 
     return (
-        <Classified.ButtonStyled
-            {...rest}
-            {...defaultProps}
-        >
+        <Classified.ButtonStyled {...rest} {...defaultProps}>
             {children}
         </Classified.ButtonStyled>
     );

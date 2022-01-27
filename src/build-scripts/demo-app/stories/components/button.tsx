@@ -11,10 +11,20 @@ const DemoStyled = styled.div`
 
 export const ButtonStories: FC = () => (
     <DemoStyled>
-        <Button size="large" appearance="default">Change visibility</Button>
-        <Button size="small" appearance="primary">Gists</Button>
-        <Button size="medium" appearance="success">Create repo</Button>
-        <Button size="large" appearance="danger">Delete repo</Button>
-        <Button size="large" appearance="link">Check out docs</Button>
+        <Button size="large" appearance="default">
+            Change visibility
+        </Button>
+        <Button size="small" appearance="primary">
+            Gists
+        </Button>
+        <Button size="medium" appearance="success">
+            Create repo
+        </Button>
+        <Button size="large" appearance="danger">
+            Delete repo
+        </Button>
+        <Button size="large" appearance="link">
+            Check out docs
+        </Button>
     </DemoStyled>
 );

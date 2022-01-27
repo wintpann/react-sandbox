@@ -6,14 +6,14 @@ import { useNodeMutationObserver } from '@hooks/useMutationObservser';
 
 export type ModifyAction = 'remove' | 'append';
 export type ModifyStyleMode = 'replace' | 'append';
-export type StyleProperty = keyof CSSStyleDeclaration
+export type StyleProperty = keyof CSSStyleDeclaration;
 export type StyleApplier = {
     appendStyles: () => void;
     removeStyles: () => void;
     updateStyles: () => void;
     refreshInitial: () => void;
-}
-export type StyleModifier = [property: string, value: string, applyMode: ModifyStyleMode]
+};
+export type StyleModifier = [property: string, value: string, applyMode: ModifyStyleMode];
 
 export const EMPTY_APPLIER: StyleApplier = {
     appendStyles: noop,
@@ -48,10 +48,7 @@ const noneInitials = new Set([
     'nowrap',
 ]);
 
-export const modifyStyles = (
-    node: HTMLElement,
-    ...styles: Array<StyleModifier>
-): StyleApplier => {
+export const modifyStyles = (node: HTMLElement, ...styles: Array<StyleModifier>): StyleApplier => {
     const initialStyles: Record<string, string> = {};
     let modifiedComputedStyles: Record<string, string> = {};
     let lastAction: ModifyAction = 'remove';
@@ -124,13 +121,13 @@ export const modifyStyles = (
     };
 };
 
-type HookStyleApplier = [append: () => void, remove: () => void]
+type HookStyleApplier = [append: () => void, remove: () => void];
 
 type ModifyState = {
     skipStyleMutation: number;
-    lastAction: {type: ModifyAction};
+    lastAction: { type: ModifyAction };
     applier: StyleApplier;
-}
+};
 
 export const useModifyStyles = (
     node: HTMLElement | null,
