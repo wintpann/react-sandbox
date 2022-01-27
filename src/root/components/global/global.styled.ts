@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const GlobalStyled = styled.div`
     position: absolute;
@@ -26,7 +26,7 @@ export const GlobalStyled = styled.div`
         display: none;
     }
 
-    ${({ theme }) => `
+    ${({ theme }) => css`
         background: ${theme.background};
         color: ${theme.color};
         font-family: ${theme.font.family};

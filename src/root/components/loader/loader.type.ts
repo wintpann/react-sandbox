@@ -3,7 +3,7 @@ export type LoaderProps = {
     type?: 'default' | 'clock' | 'neon' | 'atom';
     size?: number;
     duration?: number;
-    animation?:
+    timing?:
         | 'linear'
         | 'ease'
         | 'ease-in-out'
@@ -18,5 +18,5 @@ export type LoaderProps = {
 export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isShown' | 'size' | 'entry'>;
 
 export type SpinnerProps = Pick<Required<LoaderProps>, 'size' | 'duration'> & {
-    animation: string;
+    timing: string;
 };

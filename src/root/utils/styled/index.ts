@@ -1,23 +1,24 @@
 import { createElement, FC, forwardRef, HTMLAttributes } from 'react';
 import classNames from 'classnames';
-import { CssMixin } from '@utils/type';
+import { CssMixin, CssMixinMultiple, CssMixinRequired, CssReturn } from '@utils/type';
 import { CLASSNAME_PREFIX } from '@constants/css';
 import { isNullable } from '@utils/common';
-import { css, DefaultTheme, ThemedCssFunction } from 'styled-components';
-import { constant } from 'fp-ts/function';
+import { css } from 'styled-components';
+import { Theme } from '@theme/theme.type';
+import { uid } from '@utils/string';
 
 export const getProp = <T>(defaultProp: T, prop?: T): T => (isNullable(prop) ? defaultProp : prop);
 
 export const flexMixin: CssMixin<{
-    justify: 'center' | 'flex-start' | 'flex-end';
-    align: 'center' | 'flex-start' | 'flex-end';
-    wrap: 'nowrap' | 'wrap';
+    justify?: 'center' | 'flex-start' | 'flex-end';
+    align?: 'center' | 'flex-start' | 'flex-end';
+    wrap?: 'nowrap' | 'wrap';
 }> = (options) => {
     const justify = getProp('center', options?.justify);
     const align = getProp('center', options?.align);
     const wrap = getProp('nowrap', options?.wrap);
 
-    return `
+    return css`
         display: flex;
         justify-content: ${justify};
         align-items: ${align};
@@ -25,25 +26,67 @@ export const flexMixin: CssMixin<{
     `;
 };
 
-export const transitionMixin: CssMixin<{
+export const transitionMixin: CssMixinRequired<{
     props: string[];
-    duration: number;
-    animation: string;
+    duration?: number;
+    timing?: string;
 }> = (options) => {
-    const properties = getProp([], options?.props).join(', ');
-    const duration = getProp(0.3, options?.duration);
-    const animation = getProp('ease', options?.animation);
+    const properties = getProp([], options.props).join(', ');
+    const duration = getProp(300, options.duration);
+    const timing = getProp('ease', options.timing);
 
-    return `
-        transition: all ${duration}s ${animation};
+    return css`
+        transition: all ${duration / 1000}s ${timing};
         transition-property: ${properties};
     `;
 };
 
-type StyleFunction = ThemedCssFunction<DefaultTheme>;
+export const animateMixin: CssMixinMultiple<{
+    duration?: number;
+    timing?: string;
+    delay?: number;
+    iterationsCount?: number | 'infinite';
+    fillMode?: 'none' | 'forwards';
+    steps: {
+        [T in string]: CssReturn;
+    };
+}> = (...options) => {
+    const animations = options.map((option) => {
+        const duration = getProp(500, option.duration);
+        const timing = getProp('ease', option.timing);
+        const delay = getProp(0, option.delay);
+        const iterationsCount = getProp(1, option.iterationsCount);
+        const fillMode = getProp('forwards', option.fillMode);
+        const name = uid();
 
-export const ifStyle = (condition: boolean | undefined): StyleFunction =>
-    condition ? css : (constant('') as unknown as StyleFunction);
+        return {
+            animation: `${name} ${
+                duration / 1000
+            }s ${timing} ${delay}s ${fillMode} ${iterationsCount}`,
+            styles: Object.keys(option.steps)
+                .map((step) => `${step} {${option.steps[step]}}`)
+                .join(' '),
+            name,
+        };
+    });
+
+    return css`
+        ${animations.map(
+            (item) => css`
+                @keyframes ${item.name} {
+                    ${item.styles}
+                }
+            `,
+        )}
+        animation: ${animations.map((item) => item.animation).join(', ')};
+    `;
+};
+
+export const ifStyle = (
+    condition: boolean | undefined,
+    styles: CssReturn,
+    otherwiseStyles = css``,
+): CssReturn => (condition ? styles : otherwiseStyles);
 
 export const classify = <
     U extends HTMLAttributes<unknown>,
@@ -78,3 +121,13 @@ export const classify = <
     }, {});
     return classified as T;
 };
+
+export const mapPropCss =
+    <Props extends { [T in PropName]: string }, PropName extends keyof Props>(
+        map: {
+            [T in Props[PropName]]: (props: Props & { theme: Theme }) => CssReturn;
+        },
+    ) =>
+    (propName: PropName) =>
+    (props: Props & { theme: Theme }): CssReturn =>
+        map[props[propName]](props);

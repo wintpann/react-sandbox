@@ -1,43 +1,50 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { LoaderStyledProps } from '@components/loader/loader.type';
-import { PropCss } from '@utils/type';
-import { ifStyle, transitionMixin } from '@utils/styled';
+import { ifStyle, transitionMixin, mapPropCss } from '@utils/styled';
 
-const getEntryCss: PropCss<LoaderStyledProps, 'entry'> = {
-    rough: ({ isShown }) => `
+const getEntryCss = mapPropCss<LoaderStyledProps, 'entry'>({
+    rough: ({ isShown }) => css`
         & > * {
             display: none;
         }
-        ${ifStyle(isShown)`
-            & > * {
-                display: block;
-            }
-        `}
+        ${ifStyle(
+            isShown,
+            css`
+                & > * {
+                    display: block;
+                }
+            `,
+        )}
     `,
-    opacity: ({ isShown }) => `
+    opacity: ({ isShown }) => css`
         opacity: 0;
-        ${ifStyle(isShown)`
-            opacity: 1;
-        `}
+        ${ifStyle(
+            isShown,
+            css`
+                opacity: 1;
+            `,
+        )}
     `,
-    scale: ({ isShown }) => `
+    scale: ({ isShown }) => css`
         transform: scale(0.2);
         opacity: 0;
-        ${ifStyle(isShown)`
-            transform: scale(1);
-            opacity: 1;
-        `}
+        ${ifStyle(
+            isShown,
+            css`
+                transform: scale(1);
+                opacity: 1;
+            `,
+        )}
     `,
-};
+});
 
 export const LoaderStyled = styled.div<LoaderStyledProps>`
     position: relative;
-    ${(props) => `
+    ${(props) => css`
         width: ${props.size}px;
         height: ${props.size}px;
 
-        ${transitionMixin({ props: ['transform', 'opacity'], duration: 0.3 })}
-        
-        ${getEntryCss[props.entry](props)}
+        ${transitionMixin({ props: ['transform', 'opacity'], duration: 300 })}
     `}
+    ${getEntryCss('entry')}
 `;

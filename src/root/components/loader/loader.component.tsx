@@ -6,21 +6,18 @@ import { ClockSpinner } from '@components/loader/spinners/clock/clock-spinner.co
 import { AtomSpinner } from '@components/loader/spinners/atom/atom-spinner.component';
 import { NeonSpinner } from '@components/loader/spinners/neon/neon-spinner.component';
 import { classify, getProp } from '@utils/styled';
+import { PropMap, TwinPropMap } from '@utils/type';
 
 const Classified = classify(Styled);
 
-const spinnerMap: {
-    [T in Required<LoaderProps>['type']]: FC<SpinnerProps>;
-} = {
+const spinnerMap: PropMap<Required<LoaderProps>, 'type', FC<SpinnerProps>> = {
     default: DefaultSpinner,
     clock: ClockSpinner,
     neon: NeonSpinner,
     atom: AtomSpinner,
 };
 
-const animationMap: {
-    [T in Required<LoaderProps>['animation']]: string;
-} = {
+const animationMap: PropMap<Required<LoaderProps>, 'timing', string> = {
     linear: 'linear',
     ease: 'ease',
     'ease-in-out': 'ease-in-out',
@@ -31,9 +28,7 @@ const animationMap: {
     'ease-out-fast': 'cubic-bezier(0.18, 0.89, 0.32, 1.28)',
 };
 
-const spinnerAnimationMap: {
-    [T in Required<LoaderProps>['type']]: Required<LoaderProps>['animation'];
-} = {
+const spinnerAnimationMap: TwinPropMap<Required<LoaderProps>, 'type', 'timing'> = {
     default: 'ease',
     clock: 'linear',
     neon: 'ease',
@@ -43,27 +38,27 @@ const spinnerAnimationMap: {
 const Loader: FC<LoaderProps> = (props) => {
     const Spinner = useMemo(() => spinnerMap[getProp('default', props.type)], [props.type]);
 
-    const defaultProps = useMemo(() => {
+    const optionalProps = useMemo(() => {
         const size = getProp(60, props.size);
         const type = getProp('default', props.type);
         const duration = getProp(100, props.duration);
         const entry = getProp('scale', props.entry);
 
         const defaultSpinnerAnimation = spinnerAnimationMap[type];
-        const animation = animationMap[getProp(defaultSpinnerAnimation, props.animation)];
+        const timing = animationMap[getProp(defaultSpinnerAnimation, props.timing)];
 
         return {
             size,
             type,
             duration,
-            animation,
+            timing,
             entry,
         };
-    }, [props.size, props.type, props.duration, props.entry, props.animation]);
+    }, [props]);
 
     return (
-        <Classified.LoaderStyled {...props} {...defaultProps}>
-            <Spinner {...defaultProps} />
+        <Classified.LoaderStyled {...props} {...optionalProps}>
+            <Spinner {...optionalProps} />
         </Classified.LoaderStyled>
     );
 };

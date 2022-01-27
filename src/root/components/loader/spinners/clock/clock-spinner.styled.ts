@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
 export const ClockSpinnerStyled = styled.div<SpinnerProps>`
@@ -13,7 +13,7 @@ export const ClockSpinnerStyled = styled.div<SpinnerProps>`
         const duration = props.duration * 0.05;
         const clockColor = '#fff';
 
-        return `
+        return css`
             position: relative;
             display: flex;
             justify-content: center;
@@ -22,34 +22,35 @@ export const ClockSpinnerStyled = styled.div<SpinnerProps>`
             height: ${clockSize}px;
             border: ${clockThickness}px solid ${clockColor};
             border-radius: 50%;
-            
-            &:before, &:after {
+
+            &:before,
+            &:after {
                 position: absolute;
-                content: "";
+                content: '';
                 top: ${clockMinuteTop}px;
                 width: ${clockThickness}px;
                 background: ${clockColor};
                 border-radius: 10px;
                 transform-origin: center calc(100% - ${clockThickness / 2}px);
-                animation: spin infinite ${props.animation};
+                animation: spin infinite ${props.timing};
             }
-            
+
             &:before {
                 height: ${clockMinuteLength}px;
                 animation-duration: ${duration}s;
             }
-            
+
             &:after {
                 top: ${clockHourTop}px;
                 height: ${clockHourLength}px;
                 animation-duration: ${duration * 7.5}s;
             }
-            
+
             @keyframes spin {
                 to {
                     transform: rotate(1turn);
                 }
             }
-    `;
+        `;
     }}
 `;

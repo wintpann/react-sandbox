@@ -1,8 +1,9 @@
+import { FC, useEffect } from 'react';
+import { warn } from '@utils/logger';
 import { ButtonStories } from '@demo-app/stories/components/button';
 import { LoaderStories } from '@demo-app/stories/components/loader';
 import { AutocompleteStories } from '@demo-app/stories/hooks/useAutocomplete';
-import { FC, useEffect } from 'react';
-import { warn } from '@utils/logger';
+import { PulloverStories } from '@demo-app/stories/components/pullover';
 
 const MockStory: FC = () => {
     useEffect(() => warn('Story is not ready'));
@@ -13,13 +14,17 @@ const Stories = {
     ButtonStories,
     LoaderStories,
     AutocompleteStories,
-    BoundsStories: MockStory,
-    MutationObserverStories: MockStory,
-    ResizeObserverStories: MockStory,
+    PulloverStories,
+    UseBoundsStories: MockStory,
+    UseMutationObserverStories: MockStory,
+    UseResizeObserverStories: MockStory,
     UseTooManyUpdatesWatcherStories: MockStory,
     UseModifyStylesStories: MockStory,
     FindFirstParentWithPredicateStories: MockStory,
-    AnimateStories: MockStory,
+    UseAnimateStories: MockStory,
+    UseCancelledStateStories: MockStory,
+    UseClickOutsideStories: MockStory,
+    UseDebouncedValue: MockStory,
 };
 
 type Story = { name: string; Story: FC };

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
 export const NeonInnerStyled = styled.div`
@@ -16,14 +16,14 @@ export const NeonWrapperStyled = styled.div<SpinnerProps>`
         const duration = props.duration * 0.01;
         const blurs = [atomSize * 0.025, atomSize * 0.05, atomSize * 0.1, atomSize * 0.2];
 
-        return `
+        return css`
             position: relative;
             width: ${atomSize}px;
             height: ${atomSize}px;
             border-radius: 50%;
             background: linear-gradient(#f07e6e, #84cdfa, #5ad1cd);
-            animation: animate ${duration}s ${props.animation} infinite;
-            
+            animation: animate ${duration}s ${props.timing} infinite;
+
             @keyframes animate {
                 0% {
                     transform: rotate(0deg);
@@ -32,7 +32,7 @@ export const NeonWrapperStyled = styled.div<SpinnerProps>`
                     transform: rotate(360deg);
                 }
             }
-            
+
             &:after {
                 content: '';
                 position: absolute;
@@ -41,10 +41,10 @@ export const NeonWrapperStyled = styled.div<SpinnerProps>`
                 right: ${offset}px;
                 bottom: ${offset}px;
                 background: #f1f1f1;
-                border: solid white  ${offset}px;
+                border: solid white ${offset}px;
                 border-radius: 50%;
             }
-            
+
             ${NeonInnerStyled}:nth-child(1) {
                 filter: blur(${blurs[0]}px);
             }

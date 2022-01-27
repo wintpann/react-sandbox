@@ -1,11 +1,22 @@
-import { Theme } from '@theme/theme.type';
-import { DefaultTheme, StyledComponent } from 'styled-components';
+import { css, DefaultTheme, StyledComponent } from 'styled-components';
 
-export type PropCss<Props extends { [T in PropName]: string }, PropName extends keyof Props> = {
-    [T in Props[PropName]]: (props: Props & { theme: Theme }) => string;
+export type PropMap<Type extends Record<Key, any>, Key extends keyof Type, Value> = {
+    [T in Type[Key]]: Value;
 };
 
-export type CssMixin<Options> = (options?: Partial<Options>) => string;
+export type TwinPropMap<
+    Type extends Record<Key1, any>,
+    Key1 extends keyof Type,
+    Key2 extends keyof Type,
+> = {
+    [T in Type[Key1]]: Type[Key2];
+};
+
+export type CssReturn = ReturnType<typeof css>;
+
+export type CssMixin<Options> = (options?: Options) => CssReturn;
+export type CssMixinRequired<Options> = (options: Options) => CssReturn;
+export type CssMixinMultiple<Options> = (...options: Options[]) => CssReturn;
 
 export type Writable<T> = {
     -readonly [P in keyof T]: T[P];

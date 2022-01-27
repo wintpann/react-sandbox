@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { SpinnerProps } from '@components/loader/loader.type';
 
 export const AtomInnerStyled = styled.div``;
@@ -10,11 +10,11 @@ export const AtomWrapperStyled = styled.div<SpinnerProps>`
         const duration = props.duration * 0.02;
         const atomColor = '#64bfe8';
 
-        return `
+        return css`
             position: relative;
             width: ${atomSize}px;
             height: ${atomSize}px;
-            
+
             ${AtomInnerStyled} {
                 filter: blur(1px);
                 position: absolute;
@@ -25,19 +25,19 @@ export const AtomWrapperStyled = styled.div<SpinnerProps>`
                 height: 100%;
                 border-radius: 50%;
                 border-bottom: ${atomThick}px solid ${atomColor};
-                
+
                 &:nth-child(1) {
-                    animation: rotate1 ${duration}s ${props.animation} infinite;
+                    animation: rotate1 ${duration}s ${props.timing} infinite;
                     animation-delay: -${duration * 0.6}s;
                 }
-                
+
                 &:nth-child(2) {
-                    animation: rotate2 ${duration}s ${props.animation} infinite;
+                    animation: rotate2 ${duration}s ${props.timing} infinite;
                     animation-delay: -${duration * 0.3}s;
                 }
-                
+
                 &:nth-child(3) {
-                    animation: rotate3 ${duration}s ${props.animation} infinite;
+                    animation: rotate3 ${duration}s ${props.timing} infinite;
                     animation-delay: 0s;
                 }
             }
@@ -50,7 +50,7 @@ export const AtomWrapperStyled = styled.div<SpinnerProps>`
                     transform: rotateX(35deg) rotateY(-45deg) rotateZ(1turn);
                 }
             }
-            
+
             @keyframes rotate2 {
                 from {
                     transform: rotateX(50deg) rotateY(10deg) rotateZ(0);
@@ -59,7 +59,7 @@ export const AtomWrapperStyled = styled.div<SpinnerProps>`
                     transform: rotateX(50deg) rotateY(10deg) rotateZ(1turn);
                 }
             }
-                
+
             @keyframes rotate3 {
                 from {
                     transform: rotateX(35deg) rotateY(55deg) rotateZ(0);
@@ -68,6 +68,6 @@ export const AtomWrapperStyled = styled.div<SpinnerProps>`
                     transform: rotateX(35deg) rotateY(55deg) rotateZ(1turn);
                 }
             }
-    `;
+        `;
     }}
 `;
