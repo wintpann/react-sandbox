@@ -16,6 +16,8 @@ export const App: FC = () => {
 
     const updateControlValue: ControlsContextType['updateControlValue'] = useCallback(
         (name, value) => {
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             setControls((prev) => ({ ...prev, [name]: { ...prev[name], value } }));
         },
         [],

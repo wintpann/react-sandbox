@@ -12,10 +12,14 @@ export interface StringControl extends BaseControl<string> {
     minLength?: number;
 }
 
-export type Control = StringControl;
+export interface ButtonControl extends BaseControl<number> {
+    type: 'button';
+}
 
-export type UseControl<T, ControlType extends Control> = (
-    control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue'>,
+export type Control = StringControl | ButtonControl;
+
+export type UseControl<T, ControlType extends Control, OmitTypes extends string = ''> = (
+    control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue' | OmitTypes>,
 ) => {
     value: T;
 };

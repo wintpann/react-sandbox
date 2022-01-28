@@ -2,6 +2,7 @@ import React, { ChangeEventHandler, FC, useCallback } from 'react';
 import styled from 'styled-components';
 import { StringControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
+import { camelspace } from '@utils/string';
 
 const InputStyled = styled.input`
     flex: 1;
@@ -30,7 +31,7 @@ export const RenderStringControl: FC<StringControl> = ({
 
     return (
         <WrapperStyled>
-            <LabelStyled>{name}</LabelStyled>
+            <LabelStyled>{camelspace(name)}</LabelStyled>
             <InputStyled type="text" value={value} onChange={onChange} />
         </WrapperStyled>
     );
