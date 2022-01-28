@@ -3,6 +3,7 @@ import { Control } from '@demo-app/stories/storybox/storybox.type';
 import { RenderStringControl } from '@demo-app/stories/storybox/controls/string.control';
 import { RenderButtonControl } from '@demo-app/stories/storybox/controls/button.control';
 import { RenderRadioControl } from '@demo-app/stories/storybox/controls/radio.control';
+import { RenderCheckboxControl } from '@demo-app/stories/storybox/controls/checkbox.control';
 
 export const RenderControl: FC<{ control: Control }> = ({ control }) => {
     switch (control.type) {
@@ -12,6 +13,8 @@ export const RenderControl: FC<{ control: Control }> = ({ control }) => {
             return <RenderButtonControl {...control} />;
         case 'radio':
             return <RenderRadioControl {...control} />;
+        case 'checkbox':
+            return <RenderCheckboxControl {...control} />;
         default:
             return null;
     }

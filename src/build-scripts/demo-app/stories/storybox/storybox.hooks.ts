@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from 'react';
 import {
     ButtonControl,
+    CheckboxControl,
     RadioControl,
     StringControl,
     UseControl,
@@ -52,6 +53,26 @@ export const useRadioControl: UseControl<RadioControl> = (control) => {
         createControl(control.name, {
             ...control,
             type: 'radio',
+            value,
+            setValue,
+            defaultValue: control.defaultValue,
+        });
+        return () => deleteControl(control.name);
+    }, []);
+
+    return { value };
+};
+
+export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
+    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
+    const [value, setValue] = useState(control.defaultValue);
+
+    useEffect(() => updateControlValue(control.name, value), [value]);
+
+    useEffect(() => {
+        createControl(control.name, {
+            ...control,
+            type: 'checkbox',
             value,
             setValue,
             defaultValue: control.defaultValue,

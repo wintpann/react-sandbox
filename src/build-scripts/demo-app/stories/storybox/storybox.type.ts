@@ -21,7 +21,12 @@ export interface RadioControl extends BaseControl<string> {
     options: string[];
 }
 
-export type Control = StringControl | ButtonControl | RadioControl;
+export interface CheckboxControl extends BaseControl<string[]> {
+    type: 'checkbox';
+    options: string[];
+}
+
+export type Control = StringControl | ButtonControl | RadioControl | CheckboxControl;
 
 export type UseControl<ControlType extends Control, OmitTypes extends string = ''> = (
     control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue' | OmitTypes>,
