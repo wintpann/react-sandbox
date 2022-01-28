@@ -1,14 +1,9 @@
-import { FC, useEffect } from 'react';
-import { warn } from '@utils/logger';
+import { FC } from 'react';
 import { ButtonStories } from '@demo-app/stories/components/button';
 import { LoaderStories } from '@demo-app/stories/components/loader';
 import { AutocompleteStories } from '@demo-app/stories/hooks/useAutocomplete';
 import { PulloverStories } from '@demo-app/stories/components/pullover';
-
-const MockStory: FC = () => {
-    useEffect(() => warn('Story is not ready'));
-    return null;
-};
+import { MockStory } from '@demo-app/stories/storybox';
 
 const Stories = {
     ButtonStories,
