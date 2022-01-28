@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react';
 import {
     ButtonControl,
     CheckboxControl,
+    NumberControl,
     RadioControl,
     StringControl,
     UseControl,
@@ -20,7 +21,21 @@ export const useStringControl: UseControl<StringControl> = (control) => {
         return () => deleteControl(control.name);
     }, []);
 
-    return { value };
+    return [value, setValue];
+};
+
+export const useNumberControl: UseControl<NumberControl> = (control) => {
+    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
+    const [value, setValue] = useState(control.defaultValue);
+
+    useEffect(() => updateControlValue(control.name, value), [value]);
+
+    useEffect(() => {
+        createControl(control.name, { ...control, type: 'number', value, setValue });
+        return () => deleteControl(control.name);
+    }, []);
+
+    return [value, setValue];
 };
 
 export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (control) => {
@@ -40,7 +55,7 @@ export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (cont
         return () => deleteControl(control.name);
     }, []);
 
-    return { value };
+    return [value, setValue];
 };
 
 export const useRadioControl: UseControl<RadioControl> = (control) => {
@@ -60,7 +75,7 @@ export const useRadioControl: UseControl<RadioControl> = (control) => {
         return () => deleteControl(control.name);
     }, []);
 
-    return { value };
+    return [value, setValue];
 };
 
 export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
@@ -80,5 +95,5 @@ export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
         return () => deleteControl(control.name);
     }, []);
 
-    return { value };
+    return [value, setValue];
 };

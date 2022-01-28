@@ -12,6 +12,15 @@ export interface StringControl extends BaseControl<string> {
     minLength?: number;
 }
 
+export interface NumberControl extends BaseControl<number> {
+    type: 'number';
+    max?: number;
+    min?: number;
+    step?: number;
+    integerOnly?: boolean;
+    appearance?: 'input' | 'range';
+}
+
 export interface ButtonControl extends BaseControl<number> {
     type: 'button';
 }
@@ -26,13 +35,16 @@ export interface CheckboxControl extends BaseControl<string[]> {
     options: string[];
 }
 
-export type Control = StringControl | ButtonControl | RadioControl | CheckboxControl;
+export type Control =
+    | StringControl
+    | NumberControl
+    | ButtonControl
+    | RadioControl
+    | CheckboxControl;
 
 export type UseControl<ControlType extends Control, OmitTypes extends string = ''> = (
     control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue' | OmitTypes>,
-) => {
-    value: ControlType['value'];
-};
+) => [ControlType['value'], ControlType['setValue']];
 
 export type ControlsContextType = {
     controls: Record<string, Control>;
