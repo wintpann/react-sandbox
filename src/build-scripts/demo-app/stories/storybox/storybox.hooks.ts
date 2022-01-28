@@ -1,9 +1,14 @@
 /* eslint react-hooks/exhaustive-deps: 0 */
 import { useContext, useEffect, useState } from 'react';
-import { ButtonControl, StringControl, UseControl } from '@demo-app/stories/storybox/storybox.type';
+import {
+    ButtonControl,
+    RadioControl,
+    StringControl,
+    UseControl,
+} from '@demo-app/stories/storybox/storybox.type';
 import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
 
-export const useStringControl: UseControl<string, StringControl> = (control) => {
+export const useStringControl: UseControl<StringControl> = (control) => {
     const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
     const [value, setValue] = useState(control.defaultValue);
 
@@ -17,7 +22,7 @@ export const useStringControl: UseControl<string, StringControl> = (control) => 
     return { value };
 };
 
-export const useButtonControl: UseControl<number, ButtonControl, 'defaultValue'> = (control) => {
+export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (control) => {
     const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
     const [value, setValue] = useState(0);
 
@@ -30,6 +35,26 @@ export const useButtonControl: UseControl<number, ButtonControl, 'defaultValue'>
             value,
             setValue,
             defaultValue: 0,
+        });
+        return () => deleteControl(control.name);
+    }, []);
+
+    return { value };
+};
+
+export const useRadioControl: UseControl<RadioControl> = (control) => {
+    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
+    const [value, setValue] = useState(control.defaultValue);
+
+    useEffect(() => updateControlValue(control.name, value), [value]);
+
+    useEffect(() => {
+        createControl(control.name, {
+            ...control,
+            type: 'radio',
+            value,
+            setValue,
+            defaultValue: control.defaultValue,
         });
         return () => deleteControl(control.name);
     }, []);

@@ -16,12 +16,17 @@ export interface ButtonControl extends BaseControl<number> {
     type: 'button';
 }
 
-export type Control = StringControl | ButtonControl;
+export interface RadioControl extends BaseControl<string> {
+    type: 'radio';
+    options: string[];
+}
 
-export type UseControl<T, ControlType extends Control, OmitTypes extends string = ''> = (
+export type Control = StringControl | ButtonControl | RadioControl;
+
+export type UseControl<ControlType extends Control, OmitTypes extends string = ''> = (
     control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue' | OmitTypes>,
 ) => {
-    value: T;
+    value: ControlType['value'];
 };
 
 export type ControlsContextType = {

@@ -11,5 +11,5 @@ export const WrapperStyled = styled.div`
 export const LabelStyled = styled.label`
     width: 200px;
     margin-right: 10px;
-    text-transform: uppercase;
+    text-transform: capitalize;
 `;
