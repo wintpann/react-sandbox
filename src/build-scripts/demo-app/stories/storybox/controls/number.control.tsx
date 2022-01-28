@@ -73,6 +73,8 @@ export const RenderNumberControl: FC<NumberControl> = ({
                 value={value}
                 onChange={onInputChange}
                 onKeyDown={onKeyDown}
+                min={min}
+                max={max}
             />
         </WrapperStyled>
     );

@@ -16,6 +16,8 @@ export const useStringControl: UseControl<StringControl> = (control) => {
 
     useEffect(() => updateControlValue(control.name, value), [value]);
 
+    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
+
     useEffect(() => {
         createControl(control.name, { ...control, type: 'string', value, setValue });
         return () => deleteControl(control.name);
@@ -29,6 +31,8 @@ export const useNumberControl: UseControl<NumberControl> = (control) => {
     const [value, setValue] = useState(control.defaultValue);
 
     useEffect(() => updateControlValue(control.name, value), [value]);
+
+    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
 
     useEffect(() => {
         createControl(control.name, { ...control, type: 'number', value, setValue });
@@ -64,6 +68,8 @@ export const useRadioControl: UseControl<RadioControl> = (control) => {
 
     useEffect(() => updateControlValue(control.name, value), [value]);
 
+    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
+
     useEffect(() => {
         createControl(control.name, {
             ...control,
@@ -83,6 +89,8 @@ export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
     const [value, setValue] = useState(control.defaultValue);
 
     useEffect(() => updateControlValue(control.name, value), [value]);
+
+    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
 
     useEffect(() => {
         createControl(control.name, {
