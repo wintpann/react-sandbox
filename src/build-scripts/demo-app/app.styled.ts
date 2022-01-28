@@ -13,18 +13,10 @@ export const LinksStyled = styled.div`
     ${flexMixin({ justify: 'flex-start' })}
     ${transitionMixin({ props: ['opacity'] })}
     height: ${HEADER_HEIGHT}px;
-    background: rgba(0, 0, 0, 0.3);
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    opacity: 0.1;
+    background: rgb(45, 37, 43);
     overflow-x: auto;
     &::-webkit-scrollbar {
         display: none;
-    }
-    &:hover {
-        opacity: 1;
     }
 `;
 

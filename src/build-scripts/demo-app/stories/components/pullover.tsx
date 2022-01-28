@@ -18,7 +18,7 @@ const Content = styled.div`
 
 export const PulloverStories: FC = () => (
     <DemoStyled>
-        <Pullover position="top" iconSize={20}>
+        <Pullover position="top">
             <Content>some content here</Content>
         </Pullover>
     </DemoStyled>

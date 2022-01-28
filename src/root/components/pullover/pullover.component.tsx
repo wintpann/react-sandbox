@@ -1,10 +1,5 @@
 import React, { FC, memo, useCallback, useMemo, useRef } from 'react';
-import {
-    BsFillArrowDownCircleFill,
-    BsFillArrowUpCircleFill,
-    BsFillArrowLeftCircleFill,
-    BsFillArrowRightCircleFill,
-} from 'react-icons/bs';
+import { FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { PulloverProps } from '@components/pullover/pullover.type';
 import { classify, getProp } from '@utils/styled';
@@ -17,10 +12,10 @@ import { useDebouncedValue } from '@hooks/useDebouncedValue';
 const Classified = classify(Styled, ['PulloverContentStyled']);
 
 const IconsMap: PropMap<Required<PulloverProps>, 'position', IconType> = {
-    top: BsFillArrowDownCircleFill,
-    bottom: BsFillArrowUpCircleFill,
-    right: BsFillArrowLeftCircleFill,
-    left: BsFillArrowRightCircleFill,
+    top: FiChevronDown,
+    bottom: FiChevronUp,
+    right: FiChevronLeft,
+    left: FiChevronRight,
 };
 
 const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
@@ -28,7 +23,7 @@ const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
         const position = getProp('top', rest.position);
         const duration = getProp(500, rest.duration);
         const icon = getProp(IconsMap[position], rest.icon as IconType);
-        const iconSize = getProp(20, rest.iconSize);
+        const iconSize = getProp(30, rest.iconSize);
         const closePause = getProp(500, rest.closePause);
         const idleOpacity = getProp(0.3, rest.idleOpacity);
         const shownIconOffset = getProp(0, rest.shownIconOffset);
@@ -54,7 +49,7 @@ const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
         immediateChange,
         debouncedChange,
         cancelDebouncedChange,
-    } = useCancelledState(false, optionalProps.closePause);
+    } = useCancelledState(true, optionalProps.closePause);
 
     const isBadgeOpen = useDebouncedValue(!isOpen, optionalProps.duration - 100);
 

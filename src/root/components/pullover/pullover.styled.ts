@@ -10,12 +10,14 @@ const getIconPositionCss = mapPropCss<PulloverIconStyledProps, 'position'>({
             isBadgeOpen,
             css`
                 bottom: -${iconSize + shownIconOffset}px;
+                opacity: 1;
             `,
             css`
                 bottom: ${hiddenIconOffset}px;
+                opacity: 0;
             `,
         )}
-        ${transitionMixin({ props: ['bottom'], duration })}
+        ${transitionMixin({ props: ['bottom', 'opacity'], duration })}
     `,
     right: ({ iconSize, isBadgeOpen, duration, shownIconOffset, hiddenIconOffset }) => css`
         top: 50%;
@@ -25,12 +27,14 @@ const getIconPositionCss = mapPropCss<PulloverIconStyledProps, 'position'>({
             isBadgeOpen,
             css`
                 left: -${iconSize + shownIconOffset}px;
+                opacity: 1;
             `,
             css`
                 left: ${hiddenIconOffset}px;
+                opacity: 0;
             `,
         )}
-        ${transitionMixin({ props: ['left'], duration })}
+        ${transitionMixin({ props: ['left', 'opacity'], duration })}
     `,
     left: ({ iconSize, isBadgeOpen, duration, shownIconOffset, hiddenIconOffset }) => css`
         top: 50%;
@@ -40,12 +44,14 @@ const getIconPositionCss = mapPropCss<PulloverIconStyledProps, 'position'>({
             isBadgeOpen,
             css`
                 right: -${iconSize + shownIconOffset}px;
+                opacity: 1;
             `,
             css`
                 right: ${hiddenIconOffset}px;
+                opacity: 0;
             `,
         )}
-        ${transitionMixin({ props: ['right'], duration })}
+        ${transitionMixin({ props: ['right', 'opacity'], duration })}
     `,
     bottom: ({ iconSize, isBadgeOpen, duration, shownIconOffset, hiddenIconOffset }) => css`
         left: 50%;
@@ -54,12 +60,14 @@ const getIconPositionCss = mapPropCss<PulloverIconStyledProps, 'position'>({
             isBadgeOpen,
             css`
                 top: -${iconSize + shownIconOffset}px;
+                opacity: 1;
             `,
             css`
                 top: ${hiddenIconOffset}px;
+                opacity: 0;
             `,
         )}
-        ${transitionMixin({ props: ['top'], duration })}
+        ${transitionMixin({ props: ['top', 'opacity'], duration })}
     `,
 });
 
@@ -138,6 +146,7 @@ export const PulloverStyled = styled.div<PulloverStyledProps>`
 
 export const PulloverIcon = styled.div<PulloverIconStyledProps>`
     position: absolute;
+    z-index: 0;
     ${getIconPositionCss('position')}
 `;
 
