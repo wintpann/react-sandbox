@@ -3,19 +3,6 @@ import { LoaderStyledProps } from '@components/loader/loader.type';
 import { ifStyle, transitionMixin, mapPropCss } from '@utils/styled';
 
 const getEntryCss = mapPropCss<LoaderStyledProps, 'entry'>({
-    rough: ({ isShown }) => css`
-        & > * {
-            display: none;
-        }
-        ${ifStyle(
-            isShown,
-            css`
-                & > * {
-                    display: block;
-                }
-            `,
-        )}
-    `,
     opacity: ({ isShown }) => css`
         opacity: 0;
         ${ifStyle(

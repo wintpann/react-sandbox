@@ -54,7 +54,7 @@ export const LoaderStories: FC = () => {
 
     const [entry] = useRadioControl({
         name: 'entry',
-        options: ['scale', 'opacity', 'rough'],
+        options: ['scale', 'opacity'],
         defaultValue: 'scale',
     });
 

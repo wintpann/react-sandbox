@@ -12,7 +12,7 @@ export type LoaderProps = {
         | 'ease-in-out-slow-fast'
         | 'ease-in-out-fast'
         | 'ease-out-fast';
-    entry?: 'scale' | 'opacity' | 'rough';
+    entry?: 'scale' | 'opacity';
 };
 
 export type LoaderStyledProps = Pick<Required<LoaderProps>, 'isShown' | 'size' | 'entry'>;
