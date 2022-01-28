@@ -8,7 +8,7 @@ import {
 } from '@demo-app/stories/storybox/storybox.hooks';
 
 export const MockStory: FC = () => {
-    const { value: firsName } = useStringControl({
+    const { value: stringControl } = useStringControl({
         defaultValue: 'John',
         name: 'firstName',
         minLength: 0,
@@ -17,23 +17,23 @@ export const MockStory: FC = () => {
     const { value: timesClicked } = useButtonControl({
         name: 'timesClicked',
     });
-    const { value: trueOrFalse } = useRadioControl({
-        name: 'trueOrFalse',
+    const { value: radioControl } = useRadioControl({
+        name: 'radioControl',
         options: ['true', 'false'],
         defaultValue: 'true',
     });
-    const { value: primeColors } = useCheckboxControl({
-        name: 'primeColors',
+    const { value: checkboxControl } = useCheckboxControl({
+        name: 'checkboxControl',
         options: ['green', 'blue', 'yellow'],
         defaultValue: ['green'],
     });
 
     return (
         <StoryBox>
-            <div>somebodys name: {firsName}</div>
-            <div>times clicked {timesClicked}</div>
-            <div>true or false: {trueOrFalse}</div>
-            <div>prime colors: {primeColors.join(', ')}</div>
+            <div>string control: {stringControl}</div>
+            <div>button control (times clicked): {timesClicked}</div>
+            <div>radio control: {radioControl}</div>
+            <div>checkbox control: {checkboxControl.join(', ')}</div>
         </StoryBox>
     );
 };
