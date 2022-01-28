@@ -90,7 +90,7 @@ export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
 
     useEffect(() => updateControlValue(control.name, value), [value]);
 
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
+    useEffect(() => setValue(control.defaultValue), [control.defaultValue.join(';')]);
 
     useEffect(() => {
         createControl(control.name, {
