@@ -8,8 +8,8 @@ export interface BaseControl<T> {
 
 export interface StringControl extends BaseControl<string> {
     type: 'string';
-    maxLength?: string;
-    minLength?: string;
+    maxLength?: number;
+    minLength?: number;
 }
 
 export type Control = StringControl;

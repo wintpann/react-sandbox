@@ -11,6 +11,9 @@ export const ControlsPanelStyled = styled.div<{ width: number }>`
     height: 100%;
     width: ${({ width }) => width}%;
     background: rgba(106, 72, 106, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 `;
 
 export const StoryPanelStyled = styled.div<{ width: number }>`

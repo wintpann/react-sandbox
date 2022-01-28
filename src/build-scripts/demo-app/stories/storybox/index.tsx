@@ -3,7 +3,12 @@ import { StoryBox } from '@demo-app/stories/storybox/storybox.component';
 import { useStringControl } from '@demo-app/stories/storybox/storybox.hooks';
 
 export const MockStory: FC = () => {
-    const { value } = useStringControl({ defaultValue: 'John Doe', name: 'firstname' });
+    const { value } = useStringControl({
+        defaultValue: 'John Doe',
+        name: 'firstname',
+        minLength: 0,
+        maxLength: 1000,
+    });
 
     return (
         <StoryBox>
