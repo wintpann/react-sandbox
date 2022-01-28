@@ -34,7 +34,6 @@ export const RenderNumberControl: FC<NumberControl> = ({
 }) => {
     const onChange = useCallback(
         (updated: number | string) => {
-            console.log('LOOOG', updated);
             const washRegex = integerOnly ? WashRegex.integer : WashRegex.decimal;
             const newValue = String(updated).replace(washRegex, '');
             const castedValue = Number(newValue);
