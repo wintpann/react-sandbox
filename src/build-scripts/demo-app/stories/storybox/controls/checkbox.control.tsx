@@ -8,6 +8,11 @@ const CheckboxLabelStyled = styled.span`
     padding-right: 10px;
 `;
 
+const ButtonsGroupStyled = styled.div`
+    display: flex;
+    flex-wrap: wrap;
+`;
+
 const CheckboxButtonStyled = styled.label`
     padding: 10px;
     margin: 5px;
@@ -34,17 +39,19 @@ export const RenderCheckboxControl: FC<CheckboxControl> = ({ name, value, setVal
     return (
         <WrapperStyled>
             <LabelStyled>{camelspace(name)}</LabelStyled>
-            {options.map((option) => (
-                <CheckboxButtonStyled key={option}>
-                    <CheckboxLabelStyled>{option}</CheckboxLabelStyled>
-                    <input
-                        type="checkbox"
-                        checked={value.includes(option)}
-                        value={option}
-                        onChange={onChange}
-                    />
-                </CheckboxButtonStyled>
-            ))}
+            <ButtonsGroupStyled>
+                {options.map((option) => (
+                    <CheckboxButtonStyled key={option}>
+                        <CheckboxLabelStyled>{option}</CheckboxLabelStyled>
+                        <input
+                            type="checkbox"
+                            checked={value.includes(option)}
+                            value={option}
+                            onChange={onChange}
+                        />
+                    </CheckboxButtonStyled>
+                ))}
+            </ButtonsGroupStyled>
         </WrapperStyled>
     );
 };

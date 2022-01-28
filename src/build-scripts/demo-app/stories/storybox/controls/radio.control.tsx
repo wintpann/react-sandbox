@@ -7,6 +7,13 @@ import { camelspace } from '@utils/string';
 const RadioLabelStyled = styled.span`
     padding-right: 10px;
 `;
+
+const ButtonsGroupStyled = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+`;
+
 const RadioButtonStyled = styled.label`
     padding: 10px;
     margin: 5px;
@@ -27,17 +34,19 @@ export const RenderRadioControl: FC<RadioControl> = ({ name, value, setValue, op
     return (
         <WrapperStyled>
             <LabelStyled>{camelspace(name)}</LabelStyled>
-            {options.map((option) => (
-                <RadioButtonStyled key={option}>
-                    <RadioLabelStyled>{option}</RadioLabelStyled>
-                    <input
-                        type="radio"
-                        checked={option === value}
-                        value={option}
-                        onChange={onChange}
-                    />
-                </RadioButtonStyled>
-            ))}
+            <ButtonsGroupStyled>
+                {options.map((option) => (
+                    <RadioButtonStyled key={option}>
+                        <RadioLabelStyled>{option}</RadioLabelStyled>
+                        <input
+                            type="radio"
+                            checked={option === value}
+                            value={option}
+                            onChange={onChange}
+                        />
+                    </RadioButtonStyled>
+                ))}
+            </ButtonsGroupStyled>
         </WrapperStyled>
     );
 };

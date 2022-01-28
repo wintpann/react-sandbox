@@ -7,8 +7,9 @@ import {
     useCheckboxControl,
     useNumberControl,
 } from '@demo-app/stories/storybox/storybox.hooks';
+import styled from 'styled-components';
 
-export const MockStory: FC = () => {
+const MockStory: FC = () => {
     const [stringControl] = useStringControl({
         defaultValue: 'John',
         name: 'stringControl',
@@ -58,4 +59,22 @@ export const MockStory: FC = () => {
             <div>checkbox control: {checkboxControl.join(', ')}</div>
         </StoryBox>
     );
+};
+
+const DemoBaseStyled = styled.div`
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export {
+    useNumberControl,
+    useCheckboxControl,
+    useButtonControl,
+    useStringControl,
+    useRadioControl,
+    StoryBox,
+    MockStory,
+    DemoBaseStyled,
 };

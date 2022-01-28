@@ -1,30 +1,39 @@
 import React, { FC } from 'react';
+import {
+    DemoBaseStyled,
+    StoryBox,
+    useRadioControl,
+    useStringControl,
+} from '@demo-app/stories/storybox';
 import { Button } from '@components/button/button.component';
-import styled from 'styled-components';
-import * as Styled from '@components/button/button.styled';
+import { ButtonProps } from '@components/button/button.type';
 
-const DemoStyled = styled.div`
-    ${Styled.ButtonStyled} {
-        margin: 10px;
-    }
-`;
+export const ButtonStories: FC = () => {
+    const [text] = useStringControl({
+        name: 'text',
+        defaultValue: 'Check out ideas',
+    });
+    const [appearance] = useRadioControl({
+        name: 'appearance',
+        options: ['default', 'primary', 'link', 'danger', 'success'],
+        defaultValue: 'default',
+    });
+    const [size] = useRadioControl({
+        name: 'size',
+        options: ['large', 'medium', 'small'],
+        defaultValue: 'medium',
+    });
 
-export const ButtonStories: FC = () => (
-    <DemoStyled>
-        <Button size="large" appearance="default">
-            Change visibility
-        </Button>
-        <Button size="small" appearance="primary">
-            Gists
-        </Button>
-        <Button size="medium" appearance="success">
-            Create repo
-        </Button>
-        <Button size="large" appearance="danger">
-            Delete repo
-        </Button>
-        <Button size="large" appearance="link">
-            Check out docs
-        </Button>
-    </DemoStyled>
-);
+    return (
+        <StoryBox>
+            <DemoBaseStyled>
+                <Button
+                    appearance={appearance as ButtonProps['appearance']}
+                    size={size as ButtonProps['size']}
+                >
+                    {text}
+                </Button>
+            </DemoBaseStyled>
+        </StoryBox>
+    );
+};

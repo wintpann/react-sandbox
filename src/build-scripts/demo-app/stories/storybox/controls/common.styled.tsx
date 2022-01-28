@@ -5,11 +5,12 @@ export const WrapperStyled = styled.div`
     padding: 20px 0;
     border-bottom: 1px solid #2c2a2f;
     display: flex;
-    align-items: center;
 `;
 
 export const LabelStyled = styled.label`
-    width: 200px;
     margin-right: 10px;
     text-transform: capitalize;
+    display: flex;
+    align-items: center;
+    flex: 0 0 150px;
 `;

@@ -10,7 +10,7 @@ export const BoxStyled = styled.div`
 export const ControlsPanelStyled = styled.div<{ width: number }>`
     height: 100%;
     width: ${({ width }) => width}%;
-    background: rgba(106, 72, 106, 0.1);
+    background: rgb(56, 56, 56);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -19,5 +19,5 @@ export const ControlsPanelStyled = styled.div<{ width: number }>`
 export const StoryPanelStyled = styled.div<{ width: number }>`
     height: 100%;
     width: ${({ width }) => width}%;
-    background: rgba(91, 156, 156, 0.1);
+    background: rgb(68, 68, 68);
 `;

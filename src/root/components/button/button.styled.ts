@@ -87,8 +87,9 @@ export const ButtonStyled = styled.button<ButtonStyledProps>`
     cursor: pointer;
     border: none;
     background: none;
-    padding: 0 15px;
-    height: 40px;
+    padding: 15px;
+    min-height: 40px;
+    word-break: break-word;
 
     ${(props) => css`
         color: ${props.theme.color};
