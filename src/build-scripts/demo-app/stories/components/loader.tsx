@@ -37,7 +37,6 @@ export const LoaderStories: FC = () => {
         appearance: 'range',
     });
 
-    console.log('LOOOG', [size, duration]);
     const [timing] = useRadioControl({
         name: 'timing',
         options: [
