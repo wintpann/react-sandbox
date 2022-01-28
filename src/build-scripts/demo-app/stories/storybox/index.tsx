@@ -9,6 +9,8 @@ import {
 } from '@demo-app/stories/storybox/storybox.hooks';
 import styled from 'styled-components';
 
+const checkboxDefaults = ['green'];
+
 const MockStory: FC = () => {
     const [stringControl] = useStringControl({
         defaultValue: 'John',
@@ -44,7 +46,7 @@ const MockStory: FC = () => {
     const [checkboxControl] = useCheckboxControl({
         name: 'checkboxControl',
         options: ['green', 'blue', 'yellow'],
-        defaultValue: ['green'],
+        defaultValue: checkboxDefaults,
     });
 
     return (
