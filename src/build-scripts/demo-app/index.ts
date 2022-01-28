@@ -1,15 +1,14 @@
 import { FC } from 'react';
 import { ButtonStories } from '@demo-app/stories/components/button';
 import { LoaderStories } from '@demo-app/stories/components/loader';
-import { AutocompleteStories } from '@demo-app/stories/hooks/useAutocomplete';
 import { PulloverStories } from '@demo-app/stories/components/pullover';
 import { MockStory } from '@demo-app/stories/storybox';
 
 const Stories = {
     ButtonStories,
     LoaderStories,
-    AutocompleteStories,
     PulloverStories,
+    AutocompleteStories: MockStory,
     UseBoundsStories: MockStory,
     UseMutationObserverStories: MockStory,
     UseResizeObserverStories: MockStory,
