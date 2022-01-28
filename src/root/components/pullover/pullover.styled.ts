@@ -132,6 +132,7 @@ const getPulloverPositionCss = mapPropCss<PulloverStyledProps, 'position'>({
 
 export const PulloverStyled = styled.div<PulloverStyledProps>`
     position: absolute;
+    pointer-events: all;
     ${({ idleOpacity, isOpen }) => css`
         opacity: ${idleOpacity};
         ${ifStyle(
@@ -157,6 +158,7 @@ export const PulloverWrapperStyled = styled.div`
     bottom: 0;
     left: 0;
     overflow: hidden;
+    pointer-events: none;
 `;
 
 export const PulloverContentStyled = styled.div`
