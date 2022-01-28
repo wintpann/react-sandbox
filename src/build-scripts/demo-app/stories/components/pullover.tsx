@@ -49,10 +49,11 @@ export const PulloverStories: FC = () => {
     });
     const [idleOpacity] = useNumberControl({
         name: 'idleOpacity',
-        min: 200,
-        max: 2000,
+        min: 0.1,
+        max: 1,
         appearance: 'range',
-        defaultValue: 300,
+        step: 0.01,
+        defaultValue: 0.5,
     });
     const [children] = useStringControl({
         name: 'children',
@@ -60,14 +61,14 @@ export const PulloverStories: FC = () => {
     });
     const [shownIconOffset] = useNumberControl({
         name: 'shownIconOffset',
-        min: 0,
+        min: -30,
         max: 30,
         appearance: 'range',
         defaultValue: 0,
     });
     const [hiddenIconOffset] = useNumberControl({
         name: 'hiddenIconOffset',
-        min: 0,
+        min: -30,
         max: 30,
         appearance: 'range',
         defaultValue: 0,
