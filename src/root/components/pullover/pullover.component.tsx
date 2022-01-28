@@ -49,7 +49,7 @@ const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
         immediateChange,
         debouncedChange,
         cancelDebouncedChange,
-    } = useCancelledState(true, optionalProps.closePause);
+    } = useCancelledState(false, optionalProps.closePause);
 
     const isBadgeOpen = useDebouncedValue(!isOpen, optionalProps.duration - 100);
 
