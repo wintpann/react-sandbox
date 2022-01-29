@@ -15,7 +15,7 @@ const ButtonsGroupStyled = styled.div`
 const CheckboxButtonStyled = styled.label`
     padding: 10px;
     margin: 5px;
-    border: 1px solid #58647b;
+    border: 1px solid #7b7448;
     border-radius: 10px;
     cursor: pointer;
     text-transform: capitalize;

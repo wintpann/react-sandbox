@@ -4,6 +4,7 @@ import {
     BooleanControl,
     ButtonControl,
     CheckboxControl,
+    Control,
     NumberControl,
     RadioControl,
     StringControl,
@@ -12,68 +13,40 @@ import {
 import { v4 as uuid } from 'uuid';
 import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
 
-export const useBooleanControl: UseControl<BooleanControl> = (control) => {
-    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
-    const [value, setValue] = useState(control.defaultValue);
-    const idRef = useRef<string>();
+const createGenericControlHook = <T extends Control>(type: T['type']): UseControl<T> => {
+    const useGenericControl: UseControl<T> = (control) => {
+        const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
+        const [value, setValue] = useState(control.defaultValue);
+        const idRef = useRef<string>();
 
-    useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
-    }, [value]);
+        useEffect(() => {
+            if (idRef.current) updateControlValue(idRef.current, value);
+        }, [value]);
 
-    useEffect(() => {
-        const id = uuid();
-        idRef.current = id;
-        createControl(id, { ...control, type: 'boolean', value, setValue, id });
-        return () => deleteControl(id);
-    }, []);
+        useEffect(() => {
+            const id = uuid();
+            idRef.current = id;
+            createControl(id, { ...control, type, value, setValue, id } as T);
+            return () => deleteControl(id);
+        }, []);
 
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
+        useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
 
-    return [value, setValue];
+        return [value, setValue];
+    };
+
+    return useGenericControl;
 };
 
-export const useStringControl: UseControl<StringControl> = (control) => {
-    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
-    const [value, setValue] = useState(control.defaultValue);
-    const idRef = useRef<string>();
+export const useBooleanControl = createGenericControlHook<BooleanControl>('boolean');
 
-    useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
-    }, [value]);
+export const useStringControl = createGenericControlHook<StringControl>('string');
 
-    useEffect(() => {
-        const id = uuid();
-        idRef.current = id;
-        createControl(id, { ...control, type: 'string', value, setValue, id });
-        return () => deleteControl(id);
-    }, []);
+export const useNumberControl = createGenericControlHook<NumberControl>('number');
 
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
+export const useRadioControl = createGenericControlHook<RadioControl>('radio');
 
-    return [value, setValue];
-};
-
-export const useNumberControl: UseControl<NumberControl> = (control) => {
-    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
-    const [value, setValue] = useState(control.defaultValue);
-    const idRef = useRef<string>();
-
-    useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
-    }, [value]);
-
-    useEffect(() => {
-        const id = uuid();
-        idRef.current = id;
-        createControl(id, { ...control, type: 'number', value, setValue, id });
-        return () => deleteControl(id);
-    }, []);
-
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
-
-    return [value, setValue];
-};
+export const useCheckboxControl = createGenericControlHook<CheckboxControl>('checkbox');
 
 export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (control) => {
     const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
@@ -97,62 +70,6 @@ export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (cont
         });
         return () => deleteControl(id);
     }, []);
-
-    return [value, setValue];
-};
-
-export const useRadioControl: UseControl<RadioControl> = (control) => {
-    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
-    const [value, setValue] = useState(control.defaultValue);
-    const idRef = useRef<string>();
-
-    useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
-    }, [value]);
-
-    useEffect(() => {
-        const id = uuid();
-        idRef.current = id;
-        createControl(id, {
-            ...control,
-            type: 'radio',
-            value,
-            setValue,
-            defaultValue: control.defaultValue,
-            id,
-        });
-        return () => deleteControl(id);
-    }, []);
-
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
-
-    return [value, setValue];
-};
-
-export const useCheckboxControl: UseControl<CheckboxControl> = (control) => {
-    const { deleteControl, updateControlValue, createControl } = useContext(ControlsContext);
-    const [value, setValue] = useState(control.defaultValue);
-    const idRef = useRef<string>();
-
-    useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
-    }, [value]);
-
-    useEffect(() => {
-        const id = uuid();
-        idRef.current = id;
-        createControl(id, {
-            ...control,
-            type: 'checkbox',
-            value,
-            setValue,
-            defaultValue: control.defaultValue,
-            id,
-        });
-        return () => deleteControl(id);
-    }, []);
-
-    useEffect(() => setValue(control.defaultValue), [control.defaultValue]);
 
     return [value, setValue];
 };
