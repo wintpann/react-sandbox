@@ -7,6 +7,10 @@ export interface BaseControl<T> {
     setValue: (newValue: T) => void;
 }
 
+export interface BooleanControl extends BaseControl<boolean> {
+    type: 'boolean';
+}
+
 export interface StringControl extends BaseControl<string> {
     type: 'string';
     maxLength?: number;
@@ -41,7 +45,8 @@ export type Control =
     | NumberControl
     | ButtonControl
     | RadioControl
-    | CheckboxControl;
+    | CheckboxControl
+    | BooleanControl;
 
 export type UseControl<ControlType extends Control, OmitTypes extends string = ''> = (
     control: Omit<ControlType, 'type' | 'id' | 'value' | 'setValue' | OmitTypes>,

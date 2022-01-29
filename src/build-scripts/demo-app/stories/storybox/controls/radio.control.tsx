@@ -2,7 +2,6 @@ import React, { ChangeEventHandler, FC, useCallback } from 'react';
 import styled from 'styled-components';
 import { RadioControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
-import { camelspace } from '@utils/string';
 
 const RadioLabelStyled = styled.span`
     padding-right: 10px;
@@ -33,7 +32,7 @@ export const RenderRadioControl: FC<RadioControl> = ({ name, value, setValue, op
 
     return (
         <WrapperStyled>
-            <LabelStyled>{camelspace(name)}</LabelStyled>
+            <LabelStyled>{name}</LabelStyled>
             <ButtonsGroupStyled>
                 {options.map((option) => (
                     <RadioButtonStyled key={option}>

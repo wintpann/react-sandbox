@@ -2,7 +2,6 @@ import React, { ChangeEventHandler, FC, useCallback } from 'react';
 import styled from 'styled-components';
 import { CheckboxControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
-import { camelspace } from '@utils/string';
 
 const CheckboxLabelStyled = styled.span`
     padding-right: 10px;
@@ -38,7 +37,7 @@ export const RenderCheckboxControl: FC<CheckboxControl> = ({ name, value, setVal
 
     return (
         <WrapperStyled>
-            <LabelStyled>{camelspace(name)}</LabelStyled>
+            <LabelStyled>{name}</LabelStyled>
             <ButtonsGroupStyled>
                 {options.map((option) => (
                     <CheckboxButtonStyled key={option}>

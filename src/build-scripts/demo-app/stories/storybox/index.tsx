@@ -6,6 +6,7 @@ import {
     useRadioControl,
     useCheckboxControl,
     useNumberControl,
+    useBooleanControl,
 } from '@demo-app/stories/storybox/storybox.hooks';
 import styled from 'styled-components';
 
@@ -48,11 +49,16 @@ const MockStory: FC = () => {
         options: ['green', 'blue', 'yellow'],
         defaultValue: checkboxDefaults,
     });
+    const [booleanControl] = useBooleanControl({
+        name: 'booleanControl',
+        defaultValue: true,
+    });
 
     return (
         <StoryBox>
             <div>Mock story</div>
             <br />
+            <div>boolean control: {booleanControl}</div>
             <div>string control: {stringControl}</div>
             <div>number control: {numberControl}</div>
             <div>number range control: {numberRangeControl}</div>

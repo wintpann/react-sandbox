@@ -5,6 +5,7 @@ import { RenderButtonControl } from '@demo-app/stories/storybox/controls/button.
 import { RenderRadioControl } from '@demo-app/stories/storybox/controls/radio.control';
 import { RenderCheckboxControl } from '@demo-app/stories/storybox/controls/checkbox.control';
 import { RenderNumberControl } from '@demo-app/stories/storybox/controls/number.control';
+import { RenderBooleanControl } from '@demo-app/stories/storybox/controls/boolean.control';
 import { PropMap } from '@utils/type';
 
 const controlMap: PropMap<Control, 'type', FC<any>> = {
@@ -13,6 +14,7 @@ const controlMap: PropMap<Control, 'type', FC<any>> = {
     radio: RenderRadioControl,
     checkbox: RenderCheckboxControl,
     number: RenderNumberControl,
+    boolean: RenderBooleanControl,
 };
 
 export const RenderControl: FC<{ control: Control }> = ({ control }) => {

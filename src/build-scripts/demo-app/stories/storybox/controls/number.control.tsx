@@ -2,7 +2,6 @@ import React, { ChangeEventHandler, FC, KeyboardEventHandler, useCallback } from
 import styled from 'styled-components';
 import { NumberControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
-import { camelspace } from '@utils/string';
 import { PropMap } from '@utils/type';
 
 const InputStyled = styled.input`
@@ -66,7 +65,7 @@ export const RenderNumberControl: FC<NumberControl> = ({
 
     return (
         <WrapperStyled>
-            <LabelStyled>{camelspace(name)}</LabelStyled>
+            <LabelStyled>{name}</LabelStyled>
             <InputStyled
                 type={appearanceMap[appearance]}
                 step={step}

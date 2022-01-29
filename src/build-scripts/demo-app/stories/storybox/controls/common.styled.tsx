@@ -7,6 +7,7 @@ export const WrapperStyled = styled.div`
         border-bottom: 1px solid #2c2a2f;
     }
     display: flex;
+    user-select: none;
 `;
 
 export const LabelStyled = styled.label`

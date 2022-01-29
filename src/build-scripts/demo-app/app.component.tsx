@@ -13,7 +13,6 @@ import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
 
 export const App: FC = () => {
     const [controls, setControls] = useState<ControlsContextType['controls']>({});
-    console.log('LOOOG', controls);
 
     const updateControlValue: ControlsContextType['updateControlValue'] = useCallback(
         (id, value) => {
