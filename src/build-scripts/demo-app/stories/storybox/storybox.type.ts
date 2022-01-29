@@ -1,4 +1,5 @@
 export interface BaseControl<T> {
+    id: string;
     type: string;
     name: string;
     defaultValue: T;
@@ -48,7 +49,7 @@ export type UseControl<ControlType extends Control, OmitTypes extends string = '
 
 export type ControlsContextType = {
     controls: Record<string, Control>;
-    createControl: (name: string, control: Control) => void;
-    updateControlValue: (name: string, value: Control['value']) => void;
-    deleteControl: (name: string) => void;
+    createControl: (id: string, control: Control) => void;
+    updateControlValue: (id: string, value: Control['value']) => void;
+    deleteControl: (id: string) => void;
 };

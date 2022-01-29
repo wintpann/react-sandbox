@@ -13,24 +13,25 @@ import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
 
 export const App: FC = () => {
     const [controls, setControls] = useState<ControlsContextType['controls']>({});
+    console.log('LOOOG', controls);
 
     const updateControlValue: ControlsContextType['updateControlValue'] = useCallback(
-        (name, value) => {
+        (id, value) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            setControls((prev) => ({ ...prev, [name]: { ...prev[name], value } }));
+            setControls((prev) => ({ ...prev, [id]: { ...prev[id], value } }));
         },
         [],
     );
 
-    const createControl: ControlsContextType['createControl'] = useCallback((name, control) => {
-        setControls((prev) => ({ ...prev, [name]: control }));
+    const createControl: ControlsContextType['createControl'] = useCallback((id, control) => {
+        setControls((prev) => ({ ...prev, [id]: control }));
     }, []);
 
-    const deleteControl: ControlsContextType['deleteControl'] = useCallback((name) => {
+    const deleteControl: ControlsContextType['deleteControl'] = useCallback((id) => {
         setControls((prev) => {
             const updated = { ...prev };
-            delete updated[name];
+            delete updated[id];
             return updated;
         });
     }, []);

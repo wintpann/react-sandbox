@@ -10,6 +10,8 @@ export type PulloverProps = {
     children: ReactNode;
     shownIconOffset?: number;
     hiddenIconOffset?: number;
+    onShow?: () => void;
+    onHide?: () => void;
 };
 
 export type PulloverIconStyledProps = Pick<

@@ -17,8 +17,8 @@ export const StoryBox: FC<{ children: ReactNode }> = ({ children }) => {
     return (
         <Styled.BoxStyled>
             <Styled.ControlsPanelStyled width={50}>
-                {Object.entries(controls).map(([name, control]) => (
-                    <RenderControl key={name} control={control} />
+                {Object.entries(controls).map(([id, control]) => (
+                    <RenderControl key={id} control={control} />
                 ))}
             </Styled.ControlsPanelStyled>
             <Styled.StoryPanelStyled width={50}>{children}</Styled.StoryPanelStyled>

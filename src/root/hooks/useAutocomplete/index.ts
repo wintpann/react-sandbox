@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Lazy } from 'fp-ts/function';
 
 type AutocompleteState<T> = {
     search: string;
@@ -14,7 +13,7 @@ type AutocompleteOptions<T> = {
     predicate: (item: T, search: string) => boolean;
 };
 
-type AutocompleteResult<T> = [T[], (search: string) => void, Lazy<void>];
+type AutocompleteResult<T> = [T[], (search: string) => void, () => void];
 
 export const useAutocomplete = <T>(options: AutocompleteOptions<T>): AutocompleteResult<T> => {
     const [state, setState] = useState<AutocompleteState<T>>({

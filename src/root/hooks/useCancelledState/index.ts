@@ -1,11 +1,10 @@
 import { useCallback, useRef, useState } from 'react';
-import { Lazy } from 'fp-ts/function';
 
 export const useCancelledState = <T>(
     initialValue: T,
     waitTime = 500,
 ): {
-    cancelDebouncedChange: Lazy<void>;
+    cancelDebouncedChange: () => void;
     value: T;
     immediateChange: (newValue: T) => void;
     debouncedChange: (newValue: T) => void;

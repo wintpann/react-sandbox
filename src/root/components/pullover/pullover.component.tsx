@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useMemo, useRef } from 'react';
+import React, { FC, memo, useCallback, useMemo, useRef, useEffect } from 'react';
 import { FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { PulloverProps } from '@components/pullover/pullover.type';
@@ -18,7 +18,7 @@ const IconsMap: PropMap<Required<PulloverProps>, 'position', IconType> = {
     left: FiChevronRight,
 };
 
-const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
+const Pullover: FC<PulloverProps> = ({ children, onShow, onHide, ...rest }) => {
     const { Icon, ...optionalProps } = useMemo(() => {
         const position = getProp('top', rest.position);
         const duration = getProp(500, rest.duration);
@@ -52,6 +52,13 @@ const Pullover: FC<PulloverProps> = ({ children, ...rest }) => {
     } = useCancelledState(false, optionalProps.closePause);
 
     const isBadgeOpen = useDebouncedValue(!isOpen, optionalProps.duration - 100);
+
+    useEffect(() => {
+        const isPanelOpen = !isBadgeOpen;
+
+        if (onShow && isPanelOpen) onShow();
+        if (onHide && !isPanelOpen) onHide();
+    }, [isBadgeOpen, onHide, onShow]);
 
     const open = useCallback(() => {
         cancelDebouncedChange();
