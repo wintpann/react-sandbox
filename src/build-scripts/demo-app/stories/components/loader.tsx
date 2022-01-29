@@ -7,22 +7,22 @@ import {
 } from '@demo-app/stories/storybox';
 import { Loader } from '@components/loader/loader.component';
 import { LoaderProps } from '@components/loader/loader.type';
+import { useBooleanControl } from '@demo-app/stories/storybox/storybox.hooks';
 
 export const LoaderStories: FC = () => {
-    const [isShown] = useRadioControl({
-        name: 'isShown',
-        options: ['true', 'false'],
-        defaultValue: 'true',
+    const [isShown] = useBooleanControl({
+        name: 'Is shown',
+        defaultValue: true,
     });
 
     const [type] = useRadioControl({
-        name: 'type',
+        name: 'Type',
         options: ['default', 'clock', 'neon', 'atom'],
         defaultValue: 'default',
     });
 
     const [size] = useNumberControl({
-        name: 'size',
+        name: 'Size',
         min: 20,
         max: 300,
         defaultValue: 200,
@@ -30,7 +30,7 @@ export const LoaderStories: FC = () => {
     });
 
     const [duration] = useNumberControl({
-        name: 'duration',
+        name: 'Duration',
         min: 20,
         max: 300,
         defaultValue: 50,
@@ -38,7 +38,7 @@ export const LoaderStories: FC = () => {
     });
 
     const [timing] = useRadioControl({
-        name: 'timing',
+        name: 'Timing',
         options: [
             'linear',
             'ease',
@@ -53,7 +53,7 @@ export const LoaderStories: FC = () => {
     });
 
     const [entry] = useRadioControl({
-        name: 'entry',
+        name: 'Entry',
         options: ['scale', 'opacity'],
         defaultValue: 'scale',
     });
@@ -62,7 +62,7 @@ export const LoaderStories: FC = () => {
         <StoryBox>
             <DemoBaseStyled>
                 <Loader
-                    isShown={isShown === 'true'}
+                    isShown={isShown}
                     type={type as LoaderProps['type']}
                     size={size as LoaderProps['size']}
                     duration={duration as LoaderProps['duration']}

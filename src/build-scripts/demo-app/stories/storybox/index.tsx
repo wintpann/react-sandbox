@@ -15,13 +15,13 @@ const checkboxDefaults = ['green'];
 const MockStory: FC = () => {
     const [stringControl] = useStringControl({
         defaultValue: 'John',
-        name: 'stringControl',
+        name: 'String control',
         minLength: 0,
         maxLength: 1000,
     });
     const [numberControl] = useNumberControl({
         defaultValue: 3,
-        name: 'numberControl',
+        name: 'Number control',
         max: 100,
         min: -5,
         step: 1,
@@ -29,7 +29,7 @@ const MockStory: FC = () => {
     });
     const [numberRangeControl] = useNumberControl({
         defaultValue: 3,
-        name: 'numberRangeControl',
+        name: 'Number range control',
         max: 100,
         min: -5,
         step: 1,
@@ -37,20 +37,20 @@ const MockStory: FC = () => {
         appearance: 'range',
     });
     const [timesClicked] = useButtonControl({
-        name: 'timesClicked',
+        name: 'Times clicked',
     });
     const [radioControl] = useRadioControl({
-        name: 'radioControl',
+        name: 'Radio control',
         options: ['true', 'false'],
         defaultValue: 'true',
     });
     const [checkboxControl] = useCheckboxControl({
-        name: 'checkboxControl',
+        name: 'Checkbox control',
         options: ['green', 'blue', 'yellow'],
         defaultValue: checkboxDefaults,
     });
     const [booleanControl] = useBooleanControl({
-        name: 'booleanControl',
+        name: 'Boolean control',
         defaultValue: true,
     });
 

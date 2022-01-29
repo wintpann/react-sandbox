@@ -22,33 +22,33 @@ const ContentStyled = styled.div`
 
 export const PulloverStories: FC = () => {
     const [position] = useRadioControl({
-        name: 'position',
+        name: 'Position',
         options: ['top', 'right', 'bottom', 'left'],
         defaultValue: 'top',
     });
     const [iconSize] = useNumberControl({
-        name: 'iconSize',
+        name: 'Icon size',
         min: 20,
         max: 100,
         appearance: 'range',
         defaultValue: 30,
     });
     const [duration] = useNumberControl({
-        name: 'duration',
+        name: 'Duration',
         min: 200,
         max: 2000,
         appearance: 'range',
         defaultValue: 300,
     });
     const [closePause] = useNumberControl({
-        name: 'closePause',
+        name: 'Close pause',
         min: 200,
         max: 2000,
         appearance: 'range',
         defaultValue: 300,
     });
     const [idleOpacity] = useNumberControl({
-        name: 'idleOpacity',
+        name: 'Idle opacity',
         min: 0.1,
         max: 1,
         appearance: 'range',
@@ -56,18 +56,18 @@ export const PulloverStories: FC = () => {
         defaultValue: 0.5,
     });
     const [children] = useStringControl({
-        name: 'children',
+        name: 'Children',
         defaultValue: 'Some content here',
     });
     const [shownIconOffset] = useNumberControl({
-        name: 'shownIconOffset',
+        name: 'Shown icon offset',
         min: -30,
         max: 30,
         appearance: 'range',
         defaultValue: 0,
     });
     const [hiddenIconOffset] = useNumberControl({
-        name: 'hiddenIconOffset',
+        name: 'Hidden icon offset',
         min: -30,
         max: 30,
         appearance: 'range',

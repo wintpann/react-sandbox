@@ -10,16 +10,16 @@ import { ButtonProps } from '@components/button/button.type';
 
 export const ButtonStories: FC = () => {
     const [text] = useStringControl({
-        name: 'text',
+        name: 'Text',
         defaultValue: 'Check out ideas',
     });
     const [appearance] = useRadioControl({
-        name: 'appearance',
+        name: 'Appearance',
         options: ['default', 'primary', 'link', 'danger', 'success'],
         defaultValue: 'default',
     });
     const [size] = useRadioControl({
-        name: 'size',
+        name: 'Size',
         options: ['large', 'medium', 'small'],
         defaultValue: 'medium',
     });
