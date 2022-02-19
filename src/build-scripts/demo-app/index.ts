@@ -19,6 +19,7 @@ const Stories = {
     UseCancelledStateStories: MockStory,
     UseClickOutsideStories: MockStory,
     UseDebouncedValue: MockStory,
+    UseThrottledValue: MockStory,
 };
 
 type Story = { name: string; Story: FC };
