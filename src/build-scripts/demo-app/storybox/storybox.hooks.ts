@@ -54,7 +54,10 @@ export const useButtonControl: UseControl<ButtonControl, 'defaultValue'> = (cont
     const idRef = useRef<string>();
 
     useEffect(() => {
-        if (idRef.current) updateControlValue(idRef.current, value);
+        if (idRef.current) {
+            updateControlValue(idRef.current, value);
+            control.onClick?.();
+        }
     }, [value]);
 
     useEffect(() => {

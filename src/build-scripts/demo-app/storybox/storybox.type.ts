@@ -28,6 +28,7 @@ export interface NumberControl extends BaseControl<number> {
 
 export interface ButtonControl extends BaseControl<number> {
     type: 'button';
+    onClick?: () => void;
 }
 
 export interface RadioControl extends BaseControl<string> {

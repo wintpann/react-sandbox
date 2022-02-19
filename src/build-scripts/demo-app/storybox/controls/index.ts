@@ -20,5 +20,5 @@ const controlMap: PropMap<Control, 'type', FC<any>> = {
 export const RenderControl: FC<{ control: Control }> = ({ control }) => {
     const ControlComponent = controlMap[control.type];
 
-    return createElement(ControlComponent, control);
+    return ControlComponent ? createElement(ControlComponent, control) : null;
 };
