@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { StoryBox } from '@demo-app/stories/storybox/storybox.component';
+import { StoryBox } from '@demo-app/storybox/storybox.component';
 import {
     useButtonControl,
     useStringControl,
@@ -7,7 +7,7 @@ import {
     useCheckboxControl,
     useNumberControl,
     useBooleanControl,
-} from '@demo-app/stories/storybox/storybox.hooks';
+} from '@demo-app/storybox/storybox.hooks';
 import styled from 'styled-components';
 
 const checkboxDefaults = ['green'];

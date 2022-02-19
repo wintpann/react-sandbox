@@ -1,13 +1,8 @@
 import React, { FC } from 'react';
-import {
-    DemoBaseStyled,
-    StoryBox,
-    useNumberControl,
-    useRadioControl,
-} from '@demo-app/stories/storybox';
+import { DemoBaseStyled, StoryBox, useNumberControl, useRadioControl } from '@demo-app/storybox';
 import { Loader } from '@components/loader/loader.component';
 import { LoaderProps } from '@components/loader/loader.type';
-import { useBooleanControl } from '@demo-app/stories/storybox/storybox.hooks';
+import { useBooleanControl } from '@demo-app/storybox/storybox.hooks';
 
 export const LoaderStories: FC = () => {
     const [isShown] = useBooleanControl({

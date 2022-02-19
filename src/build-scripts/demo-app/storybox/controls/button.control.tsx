@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
-import { ButtonControl } from '@demo-app/stories/storybox/storybox.type';
-import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
+import { ButtonControl } from '@demo-app/storybox/storybox.type';
+import { WrapperStyled, LabelStyled } from '@demo-app/storybox/controls/common.styled';
 
 const ButtonStyled = styled.button`
     cursor: pointer;

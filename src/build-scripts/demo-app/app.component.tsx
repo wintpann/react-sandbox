@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Switch, Route, NavLink } from 'react-router-do
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { camelspace } from '@utils/string';
-import css from '@demo-app/stories/app.module.css';
+import css from '@demo-app/app.module.css';
 import * as Styled from '@demo-app/app.styled';
 import { Global } from '@components/global/global.component';
 import { AllStories } from '@demo-app/index';
 import { Pullover } from '@components/pullover/pullover.component';
-import { ControlsContextType } from '@demo-app/stories/storybox/storybox.type';
-import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
+import { ControlsContextType } from '@demo-app/storybox/storybox.type';
+import { ControlsContext } from '@demo-app/storybox/storybox.component';
 
 export const App: FC = () => {
     const [controls, setControls] = useState<ControlsContextType['controls']>({});

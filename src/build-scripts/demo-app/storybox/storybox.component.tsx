@@ -1,8 +1,8 @@
 import React, { createContext, FC, ReactNode, useContext } from 'react';
 import { noop } from '@utils/common';
-import * as Styled from '@demo-app/stories/storybox/storybox.styled';
-import { ControlsContextType } from '@demo-app/stories/storybox/storybox.type';
-import { RenderControl } from '@demo-app/stories/storybox/controls';
+import * as Styled from '@demo-app/storybox/storybox.styled';
+import { ControlsContextType } from '@demo-app/storybox/storybox.type';
+import { RenderControl } from '@demo-app/storybox/controls';
 
 export const ControlsContext = createContext<ControlsContextType>({
     controls: {},

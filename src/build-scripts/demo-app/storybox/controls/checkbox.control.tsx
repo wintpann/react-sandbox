@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FC } from 'react';
 import styled from 'styled-components';
-import { CheckboxControl } from '@demo-app/stories/storybox/storybox.type';
-import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
+import { CheckboxControl } from '@demo-app/storybox/storybox.type';
+import { WrapperStyled, LabelStyled } from '@demo-app/storybox/controls/common.styled';
 
 const CheckboxLabelStyled = styled.span`
     padding-right: 10px;

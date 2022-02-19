@@ -1,8 +1,8 @@
 import { FC } from 'react';
-import { ButtonStories } from '@demo-app/stories/components/button';
-import { LoaderStories } from '@demo-app/stories/components/loader';
-import { PulloverStories } from '@demo-app/stories/components/pullover';
-import { MockStory } from '@demo-app/stories/storybox';
+import { ButtonStories } from '@demo-app/stories/button';
+import { LoaderStories } from '@demo-app/stories/loader';
+import { PulloverStories } from '@demo-app/stories/pullover';
+import { MockStory } from '@demo-app/storybox';
 
 const Stories = {
     ButtonStories,

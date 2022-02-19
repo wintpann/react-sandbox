@@ -1,7 +1,7 @@
 import React, { ChangeEventHandler, FC, KeyboardEventHandler, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { NumberControl } from '@demo-app/stories/storybox/storybox.type';
-import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
+import { NumberControl } from '@demo-app/storybox/storybox.type';
+import { WrapperStyled, LabelStyled } from '@demo-app/storybox/controls/common.styled';
 import { PropMap } from '@utils/type';
 import { ifStyle } from '@utils/styled';
 

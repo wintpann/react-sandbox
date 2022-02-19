@@ -1,10 +1,5 @@
 import React, { FC } from 'react';
-import {
-    DemoBaseStyled,
-    StoryBox,
-    useRadioControl,
-    useStringControl,
-} from '@demo-app/stories/storybox';
+import { DemoBaseStyled, StoryBox, useRadioControl, useStringControl } from '@demo-app/storybox';
 import { Button } from '@components/button/button.component';
 import { ButtonProps } from '@components/button/button.type';
 

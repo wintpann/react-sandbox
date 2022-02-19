@@ -9,9 +9,9 @@ import {
     RadioControl,
     StringControl,
     UseControl,
-} from '@demo-app/stories/storybox/storybox.type';
+} from '@demo-app/storybox/storybox.type';
 import { v4 as uuid } from 'uuid';
-import { ControlsContext } from '@demo-app/stories/storybox/storybox.component';
+import { ControlsContext } from '@demo-app/storybox/storybox.component';
 
 const createGenericControlHook = <T extends Control>(type: T['type']): UseControl<T> => {
     const useGenericControl: UseControl<T> = (control) => {

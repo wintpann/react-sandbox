@@ -6,7 +6,7 @@ import {
     useNumberControl,
     useRadioControl,
     useStringControl,
-} from '@demo-app/stories/storybox';
+} from '@demo-app/storybox';
 import { Pullover } from '@components/pullover/pullover.component';
 import { PulloverProps } from '@components/pullover/pullover.type';
 
