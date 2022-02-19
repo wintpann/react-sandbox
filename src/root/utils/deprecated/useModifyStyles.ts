@@ -53,7 +53,7 @@ export const modifyStyles = (node: HTMLElement, ...styles: Array<StyleModifier>)
     let modifiedComputedStyles: Record<string, string> = {};
     let lastAction: ModifyAction = 'remove';
 
-    const appendStyles = (): void => {
+    const appendStyles = () => {
         if (lastAction === 'remove') {
             const computed = getComputedStyle(node);
             styles.forEach(([property, value, mode]: StyleModifier) => {
@@ -76,7 +76,7 @@ export const modifyStyles = (node: HTMLElement, ...styles: Array<StyleModifier>)
         }
     };
 
-    const removeStyles = (): void => {
+    const removeStyles = () => {
         if (lastAction === 'append') {
             styles.forEach(([property]: StyleModifier) => {
                 const initialStyle = initialStyles[property];
@@ -90,14 +90,14 @@ export const modifyStyles = (node: HTMLElement, ...styles: Array<StyleModifier>)
         }
     };
 
-    const updateStyles = (): void => {
+    const updateStyles = () => {
         if (lastAction === 'append') {
             removeStyles();
             appendStyles();
         }
     };
 
-    const refreshInitial = (): void => {
+    const refreshInitial = () => {
         const computed = getComputedStyle(node);
         styles.forEach(([property]: StyleModifier) => {
             const current = node.style[property as any] as string;

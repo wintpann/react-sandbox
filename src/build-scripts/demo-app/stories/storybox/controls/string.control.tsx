@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC, useCallback } from 'react';
+import React, { ChangeEventHandler, FC } from 'react';
 import styled from 'styled-components';
 import { StringControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
@@ -17,16 +17,13 @@ export const RenderStringControl: FC<StringControl> = ({
     minLength,
     maxLength,
 }) => {
-    const onChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-        (e) => {
-            const updated: string = e.target.value;
-            if (maxLength && updated.length > maxLength) return;
-            if (minLength && updated.length < minLength) return;
+    const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+        const updated: string = e.target.value;
+        if (maxLength && updated.length > maxLength) return;
+        if (minLength && updated.length < minLength) return;
 
-            setValue(updated);
-        },
-        [maxLength, minLength, setValue],
-    );
+        setValue(updated);
+    };
 
     return (
         <WrapperStyled>

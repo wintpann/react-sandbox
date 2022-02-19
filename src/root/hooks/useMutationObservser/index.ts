@@ -10,7 +10,7 @@ export type MutationObserverConfig = {
     subtree: boolean;
 };
 
-const notifyError = (): void =>
+const notifyError = () =>
     error([
         'Too many updates detected in useMutationObserver.',
         'Check passed callback and config options',

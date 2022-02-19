@@ -1,4 +1,4 @@
-import React, { FC, memo, useCallback, useMemo, useRef, useEffect } from 'react';
+import React, { FC, memo, useMemo, useRef, useEffect } from 'react';
 import { FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { PulloverProps } from '@components/pullover/pullover.type';
@@ -60,14 +60,12 @@ const Pullover: FC<PulloverProps> = ({ children, onShow, onHide, ...rest }) => {
         if (onHide && !isPanelOpen) onHide();
     }, [isBadgeOpen, onHide, onShow]);
 
-    const open = useCallback(() => {
+    const open = () => {
         cancelDebouncedChange();
         immediateChange(true);
-    }, [immediateChange, cancelDebouncedChange]);
+    };
 
-    const close = useCallback(() => {
-        debouncedChange(false);
-    }, [debouncedChange]);
+    const close = () => debouncedChange(false);
 
     // TODO add mobile events support
     return (

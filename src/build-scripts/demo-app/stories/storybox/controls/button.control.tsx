@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 import { ButtonControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
@@ -8,7 +8,7 @@ const ButtonStyled = styled.button`
 `;
 
 export const RenderButtonControl: FC<ButtonControl> = ({ name, value, setValue }) => {
-    const onChange = useCallback(() => setValue(value + 1), [setValue, value]);
+    const onChange = () => setValue(value + 1);
 
     return (
         <WrapperStyled>

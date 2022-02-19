@@ -38,7 +38,7 @@ export const App: FC = () => {
     return (
         <Global>
             <Router>
-                <Pullover iconSize={40}>
+                <Pullover iconSize={40} duration={300}>
                     <Styled.LinksStyled>
                         {AllStories.map(({ name }) => (
                             <Styled.LinkStyled key={name}>

@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler, FC, useCallback } from 'react';
+import React, { ChangeEventHandler, FC } from 'react';
 import styled from 'styled-components';
 import { RadioControl } from '@demo-app/stories/storybox/storybox.type';
 import { WrapperStyled, LabelStyled } from '@demo-app/stories/storybox/controls/common.styled';
@@ -23,12 +23,7 @@ const RadioButtonStyled = styled.label`
 `;
 
 export const RenderRadioControl: FC<RadioControl> = ({ name, value, setValue, options }) => {
-    const onChange: ChangeEventHandler<HTMLInputElement> = useCallback(
-        (e) => {
-            setValue(e.target.value);
-        },
-        [setValue],
-    );
+    const onChange: ChangeEventHandler<HTMLInputElement> = (e) => setValue(e.target.value);
 
     return (
         <WrapperStyled>

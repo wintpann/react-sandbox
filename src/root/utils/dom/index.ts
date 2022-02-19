@@ -11,7 +11,7 @@ export const findFirstParentWith = (
         return [currentLevel, suitableParent];
     }
 
-    const digUp = (): void => {
+    const digUp = () => {
         if (currentLevel >= maxLevel) {
             return;
         }
