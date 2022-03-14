@@ -1,4 +1,4 @@
-import { RefObject, useCallback, useEffect, useState } from 'react';
+import { RefObject, useCallback, useLayoutEffect, useState } from 'react';
 import { ResizeCallback, useResizeObserver } from '@hooks/useResizeObserver';
 
 export type Bounds = Omit<DOMRectReadOnly, 'toJSON'>;
@@ -19,7 +19,7 @@ export const useBounds = (ref: RefObject<HTMLElement>): Bounds => {
     const handleResize: ResizeCallback = useCallback((entry) => {
         setBounds(entry.contentRect);
     }, []);
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (ref.current) {
             setBounds(ref.current.getBoundingClientRect());
         }

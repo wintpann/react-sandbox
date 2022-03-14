@@ -4,13 +4,14 @@ import { LoaderStories } from '@demo-app/stories/loader';
 import { PulloverStories } from '@demo-app/stories/pullover';
 import { AutocompleteStories } from '@demo-app/stories/autocomplete';
 import { MockStory } from '@demo-app/storybox';
+import { UseBoundsStories } from '@demo-app/stories/useBounds';
 
 const Stories = {
     ButtonStories,
     LoaderStories,
     PulloverStories,
     AutocompleteStories,
-    UseBoundsStories: MockStory,
+    UseBoundsStories,
     UseMutationObserverStories: MockStory,
     UseResizeObserverStories: MockStory,
     UseTooManyUpdatesWatcherStories: MockStory,

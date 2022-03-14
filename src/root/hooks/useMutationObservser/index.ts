@@ -1,7 +1,7 @@
 import { RefObject, useCallback, useEffect, useRef } from 'react';
 import { noop } from '@utils/common';
 import { useTooManyUpdatesWatcher } from '@hooks/useTooManyUpdatesWatcher';
-import { error } from '@utils/logger';
+import { Logger } from '@utils/logger';
 
 export type MutationObserverConfig = {
     attributes: boolean;
@@ -10,7 +10,7 @@ export type MutationObserverConfig = {
 };
 
 const notifyError = () =>
-    error([
+    Logger.error([
         'Too many updates detected in useMutationObserver.',
         'Check passed callback and config options',
     ]);
