@@ -2,7 +2,7 @@ import { FC, ReactNode } from 'react';
 
 export type PulloverProps = {
     position?: 'top' | 'right' | 'bottom' | 'left';
-    icon?: FC<{ iconSize: number }>;
+    Icon?: FC<{ size: number }>;
     iconSize?: number;
     duration?: number;
     closePause?: number;

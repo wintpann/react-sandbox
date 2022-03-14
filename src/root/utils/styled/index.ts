@@ -2,44 +2,29 @@ import { createElement, FC, forwardRef, HTMLAttributes } from 'react';
 import classNames from 'classnames';
 import { CssMixin, CssMixinMultiple, CssMixinRequired, CssReturn } from '@utils/type';
 import { CLASSNAME_PREFIX } from '@constants/css';
-import { isNullable } from '@utils/common';
 import { css } from 'styled-components';
 import { Theme } from '@theme/theme.type';
 import { uid } from '@utils/string';
-
-export const getProp = <T>(defaultProp: T, prop?: T): T => (isNullable(prop) ? defaultProp : prop);
 
 export const flexMixin: CssMixin<{
     justify?: 'center' | 'flex-start' | 'flex-end';
     align?: 'center' | 'flex-start' | 'flex-end';
     wrap?: 'nowrap' | 'wrap';
-}> = (options) => {
-    const justify = getProp('center', options?.justify);
-    const align = getProp('center', options?.align);
-    const wrap = getProp('nowrap', options?.wrap);
-
-    return css`
-        display: flex;
-        justify-content: ${justify};
-        align-items: ${align};
-        flex-wrap: ${wrap};
-    `;
-};
+}> = ({ justify = 'center', align = 'center', wrap = 'nowrap' } = {}) => css`
+    display: flex;
+    justify-content: ${justify};
+    align-items: ${align};
+    flex-wrap: ${wrap};
+`;
 
 export const transitionMixin: CssMixinRequired<{
     props: string[];
     duration?: number;
     timing?: string;
-}> = (options) => {
-    const properties = getProp([], options.props).join(', ');
-    const duration = getProp(300, options.duration);
-    const timing = getProp('ease', options.timing);
-
-    return css`
-        transition: all ${duration / 1000}s ${timing};
-        transition-property: ${properties};
-    `;
-};
+}> = ({ props = [], duration = 300, timing = 'ease' }) => css`
+    transition: all ${duration / 1000}s ${timing};
+    transition-property: ${props.join(', ')};
+`;
 
 export const animateMixin: CssMixinMultiple<{
     duration?: number;
@@ -52,11 +37,11 @@ export const animateMixin: CssMixinMultiple<{
     };
 }> = (...options) => {
     const animations = options.map((option) => {
-        const duration = getProp(500, option.duration);
-        const timing = getProp('ease', option.timing);
-        const delay = getProp(0, option.delay);
-        const iterationsCount = getProp(1, option.iterationsCount);
-        const fillMode = getProp('forwards', option.fillMode);
+        const duration = option.duration ?? 500;
+        const timing = option.timing ?? 'ease';
+        const delay = option.delay ?? 0;
+        const iterationsCount = option.iterationsCount ?? 1;
+        const fillMode = option.fillMode ?? 'forwards';
         const name = uid();
 
         return {

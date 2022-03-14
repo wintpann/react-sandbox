@@ -1,5 +1,4 @@
 import { RefObject, useCallback, useEffect, useRef } from 'react';
-import { getProp } from '@utils/styled';
 import { noop } from '@utils/common';
 import { useTooManyUpdatesWatcher } from '@hooks/useTooManyUpdatesWatcher';
 import { error } from '@utils/logger';
@@ -33,9 +32,9 @@ export const useMutationObserver = (
         update();
 
         const observerConfig = {
-            attributes: getProp(true, config?.attributes),
-            childList: getProp(false, config?.childList),
-            subtree: getProp(false, config?.subtree),
+            attributes: config?.attributes ?? true,
+            childList: config?.childList ?? false,
+            subtree: config?.subtree ?? false,
         };
 
         const observer = new MutationObserver(callback);

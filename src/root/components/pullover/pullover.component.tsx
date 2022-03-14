@@ -1,8 +1,8 @@
-import React, { FC, memo, useMemo, useRef, useEffect } from 'react';
+import React, { FC, memo, useRef, useEffect } from 'react';
 import { FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import { IconType } from 'react-icons';
 import { PulloverProps } from '@components/pullover/pullover.type';
-import { classify, getProp } from '@utils/styled';
+import { classify } from '@utils/styled';
 import * as Styled from '@components/pullover/pullover.styled';
 import { PropMap } from '@utils/type';
 import { useBounds } from '@hooks/useBounds';
@@ -18,29 +18,19 @@ const IconsMap: PropMap<Required<PulloverProps>, 'position', IconType> = {
     left: FiChevronRight,
 };
 
-const Pullover: FC<PulloverProps> = ({ children, onShow, onHide, ...rest }) => {
-    const { Icon, ...optionalProps } = useMemo(() => {
-        const position = getProp('top', rest.position);
-        const duration = getProp(500, rest.duration);
-        const icon = getProp(IconsMap[position], rest.icon as IconType);
-        const iconSize = getProp(30, rest.iconSize);
-        const closePause = getProp(500, rest.closePause);
-        const idleOpacity = getProp(0.3, rest.idleOpacity);
-        const shownIconOffset = getProp(0, rest.shownIconOffset);
-        const hiddenIconOffset = getProp(0, rest.hiddenIconOffset);
-
-        return {
-            position,
-            duration,
-            Icon: icon,
-            iconSize,
-            closePause,
-            idleOpacity,
-            shownIconOffset,
-            hiddenIconOffset,
-        };
-    }, [rest]);
-
+const Pullover: FC<PulloverProps> = ({
+    children,
+    onShow,
+    onHide,
+    position = 'top',
+    duration = 500,
+    Icon = IconsMap[position],
+    iconSize = 30,
+    closePause = 500,
+    idleOpacity = 0.3,
+    shownIconOffset = 0,
+    hiddenIconOffset = 0,
+}) => {
     const contentRef = useRef<HTMLDivElement>(null);
     const { width, height } = useBounds(contentRef);
 
@@ -49,9 +39,9 @@ const Pullover: FC<PulloverProps> = ({ children, onShow, onHide, ...rest }) => {
         immediateChange,
         debouncedChange,
         cancelDebouncedChange,
-    } = useCancelledState(false, optionalProps.closePause);
+    } = useCancelledState(false, closePause);
 
-    const isBadgeOpen = useDebouncedValue(!isOpen, optionalProps.duration - 100);
+    const isBadgeOpen = useDebouncedValue(!isOpen, duration - 100);
 
     useEffect(() => {
         const isPanelOpen = !isBadgeOpen;
@@ -71,22 +61,30 @@ const Pullover: FC<PulloverProps> = ({ children, onShow, onHide, ...rest }) => {
     return (
         <Classified.PulloverWrapperStyled>
             <Classified.PulloverStyled
-                {...optionalProps}
                 width={width}
                 height={height}
                 isOpen={isOpen}
                 onMouseLeave={close}
                 onMouseOver={open}
+                position={position}
+                iconSize={iconSize}
+                idleOpacity={idleOpacity}
+                duration={duration}
             >
                 <Classified.PulloverContentStyled ref={contentRef}>
                     {children}
                 </Classified.PulloverContentStyled>
                 <Classified.PulloverIcon
-                    {...optionalProps}
                     isOpen={isOpen}
                     isBadgeOpen={isBadgeOpen}
+                    position={position}
+                    iconSize={iconSize}
+                    idleOpacity={idleOpacity}
+                    duration={duration}
+                    shownIconOffset={shownIconOffset}
+                    hiddenIconOffset={hiddenIconOffset}
                 >
-                    <Icon size={optionalProps.iconSize} />
+                    <Icon size={iconSize} />
                 </Classified.PulloverIcon>
             </Classified.PulloverStyled>
         </Classified.PulloverWrapperStyled>

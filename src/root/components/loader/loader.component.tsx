@@ -5,7 +5,7 @@ import { DefaultSpinner } from '@components/loader/spinners/default/default-spin
 import { ClockSpinner } from '@components/loader/spinners/clock/clock-spinner.component';
 import { AtomSpinner } from '@components/loader/spinners/atom/atom-spinner.component';
 import { NeonSpinner } from '@components/loader/spinners/neon/neon-spinner.component';
-import { classify, getProp } from '@utils/styled';
+import { classify } from '@utils/styled';
 import { PropMap, TwinPropMap } from '@utils/type';
 
 const Classified = classify(Styled);
@@ -35,30 +35,24 @@ const spinnerAnimationMap: TwinPropMap<Required<LoaderProps>, 'type', 'timing'> 
     atom: 'linear',
 };
 
-const Loader: FC<LoaderProps> = (props) => {
-    const Spinner = useMemo(() => spinnerMap[getProp('default', props.type)], [props.type]);
+const Loader: FC<LoaderProps> = ({
+    size = 60,
+    type = 'default',
+    duration = 100,
+    entry = 'scale',
+    isShown,
+    timing,
+}) => {
+    const Spinner = useMemo(() => spinnerMap[type], [type]);
 
-    const optionalProps = useMemo(() => {
-        const size = getProp(60, props.size);
-        const type = getProp('default', props.type);
-        const duration = getProp(100, props.duration);
-        const entry = getProp('scale', props.entry);
-
+    const spinnerTiming = useMemo(() => {
         const defaultSpinnerAnimation = spinnerAnimationMap[type];
-        const timing = animationMap[getProp(defaultSpinnerAnimation, props.timing)];
-
-        return {
-            size,
-            type,
-            duration,
-            timing,
-            entry,
-        };
-    }, [props]);
+        return animationMap[timing ?? defaultSpinnerAnimation];
+    }, [timing, type]);
 
     return (
-        <Classified.LoaderStyled {...props} {...optionalProps}>
-            <Spinner {...optionalProps} />
+        <Classified.LoaderStyled isShown={isShown} size={size} entry={entry}>
+            <Spinner size={size} duration={duration} timing={spinnerTiming} />
         </Classified.LoaderStyled>
     );
 };
