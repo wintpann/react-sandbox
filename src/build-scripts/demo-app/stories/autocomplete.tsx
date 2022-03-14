@@ -18,7 +18,8 @@ type User = { id: string; name: string };
 
 const users: User[] = arrayOf(50, () => ({ name: faker.name.firstName(), id: uuid() }));
 
-const userMatched = (user: User, search: string) => user.name.includes(search);
+const userMatched = (user: User, search: string) =>
+    user.name.toLowerCase().includes(search.toLowerCase());
 
 export const AutocompleteStories: FC = () => {
     const [autocompletedUsers, setUsersSearch, showNextUsers] = useAutocomplete({
