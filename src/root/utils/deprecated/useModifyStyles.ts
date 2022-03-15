@@ -48,7 +48,7 @@ const noneInitials = new Set([
     'nowrap',
 ]);
 
-export const modifyStyles = (node: HTMLElement, ...styles: Array<StyleModifier>): StyleApplier => {
+export const modifyStyles = (node: HTMLElement, styles: Array<StyleModifier>): StyleApplier => {
     const initialStyles: Record<string, string> = {};
     let modifiedComputedStyles: Record<string, string> = {};
     let lastAction: ModifyAction = 'remove';
@@ -131,7 +131,7 @@ type ModifyState = {
 
 export const useModifyStyles = (
     node: HTMLElement | null,
-    ...styles: Array<StyleModifier>
+    styles: Array<StyleModifier>,
 ): HookStyleApplier => {
     const state = useRef<ModifyState>({
         skipStyleMutation: 0,
@@ -170,7 +170,7 @@ export const useModifyStyles = (
             return;
         }
 
-        state.current.applier = modifyStyles(node, ...styles);
+        state.current.applier = modifyStyles(node, styles);
 
         if (state.current.lastAction.type === 'append') {
             state.current.lastAction.type = 'remove';

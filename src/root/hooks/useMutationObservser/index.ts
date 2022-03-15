@@ -1,19 +1,11 @@
 import { RefObject, useCallback, useEffect, useRef } from 'react';
 import { noop } from '@utils/common';
-import { useTooManyUpdatesWatcher } from '@hooks/useTooManyUpdatesWatcher';
-import { Logger } from '@utils/logger';
 
 export type MutationObserverConfig = {
     attributes: boolean;
     childList: boolean;
     subtree: boolean;
 };
-
-const notifyError = () =>
-    Logger.error([
-        'Too many updates detected in useMutationObserver.',
-        'Check passed callback and config options',
-    ]);
 
 export const useMutationObserver = (
     callback: MutationCallback,
@@ -22,14 +14,10 @@ export const useMutationObserver = (
 ): void => {
     const observerRef = useRef<MutationObserver>();
 
-    const update = useTooManyUpdatesWatcher(notifyError);
-
     useEffect(() => {
         if (!ref.current) {
             return noop;
         }
-
-        update();
 
         const observerConfig = {
             attributes: config?.attributes ?? true,
@@ -46,7 +34,7 @@ export const useMutationObserver = (
             observer.disconnect();
             observerRef.current = undefined;
         };
-    }, [callback, config, ref, update]);
+    }, [callback, config, ref]);
 };
 
 export type NodeMutationCallback = (mutation: MutationRecord) => void;

@@ -5,6 +5,10 @@ import { PulloverStories } from '@demo-app/stories/pullover';
 import { AutocompleteStories } from '@demo-app/stories/autocomplete';
 import { MockStory } from '@demo-app/storybox';
 import { UseBoundsStories } from '@demo-app/stories/useBounds';
+import { UseMutationObserverStories } from '@demo-app/stories/useMutationObserver';
+import { UseResizeObserverStories } from '@demo-app/stories/useResizeObserver';
+import { UseModifyStylesStories } from '@demo-app/stories/useModifyStyles';
+import { AnimateStories } from '@demo-app/stories/animate';
 
 const Stories = {
     ButtonStories,
@@ -12,12 +16,10 @@ const Stories = {
     PulloverStories,
     AutocompleteStories,
     UseBoundsStories,
-    UseMutationObserverStories: MockStory,
-    UseResizeObserverStories: MockStory,
-    UseTooManyUpdatesWatcherStories: MockStory,
-    UseModifyStylesStories: MockStory,
-    FindFirstParentWithPredicateStories: MockStory,
-    UseAnimateStories: MockStory,
+    UseMutationObserverStories,
+    UseResizeObserverStories,
+    UseModifyStylesStories,
+    AnimateStories,
     UseCancelledStateStories: MockStory,
     UseClickOutsideStories: MockStory,
     UseDebouncedValue: MockStory,
