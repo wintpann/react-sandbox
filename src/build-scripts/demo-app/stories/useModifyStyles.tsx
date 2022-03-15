@@ -5,7 +5,6 @@ import { StyleModifier, useModifyStyles } from '@utils/deprecated/useModifyStyle
 
 const RectangleStyled = styled.div`
     background: rgba(255, 255, 255, 0.2);
-    padding: 5px;
     transition: all 0.3s;
 `;
 
@@ -33,15 +32,17 @@ export const UseModifyStylesStories: FC = () => {
     return (
         <StoryBox>
             <DemoBaseStyled>
-                <RectangleStyled ref={ref}>
+                <RectangleStyled ref={ref} style={{ padding: '5px' }}>
                     imagine if its kinda node that we cant control via props or classnames <br />
                     check devtools to see how styles changing <br />
+                    it considers initial styles from style attribute and computed by classnames
+                    <br />
                     this is very unstable and deprecated and its shit! dont use it
                     <br /> <br />
                     default styles: <br />
-                    background: rgba(255, 255, 255, 0.2); <br />
-                    transition: all 0.3s; <br />
-                    padding: 5px; <br /> <br />
+                    background: rgba(255, 255, 255, 0.2); (from classname) <br />
+                    transition: all 0.3s; (from classname) <br />
+                    padding: 5px; (from style attribute) <br /> <br />
                     fake styles: <br />
                     background: green <br />
                     border-radius: 10px; <br />
